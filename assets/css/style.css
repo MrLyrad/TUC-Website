@@ -185,8 +185,8 @@ h6 {
   color: #ffc95b;
 }
 
-.navbar .getstarted,
-.navbar .getstarted:focus {
+.navbar .login,
+.navbar .login:focus {
   padding: 8px 20px;
   margin-left: 30px;
   border-radius: 50px;
@@ -196,8 +196,8 @@ h6 {
   font-weight: 600;
 }
 
-.navbar .getstarted:hover,
-.navbar .getstarted:focus:hover {
+.navbar .login:hover,
+.navbar .login:focus:hover {
   color: #fff;
   background: #e78000;
 }
@@ -340,8 +340,8 @@ h6 {
   color: #43a86d;
 }
 
-.navbar-mobile .getstarted,
-.navbar-mobile .getstarted:focus {
+.navbar-mobile .login,
+.navbar-mobile .login:focus {
   margin: 15px;
   color: #ffc95b;
 }

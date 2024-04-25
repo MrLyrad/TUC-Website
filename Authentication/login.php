@@ -10,7 +10,13 @@
         <input type="submit" id="submit-button" name="submit-button" value="submit">
     </form>
 
+    <br />
+    <p>Not a volunteer yet?</p>
+    <!-- Redirect to Registration -->
+    <button onclick="window.location.href='signup.php';">Signup</button>
 
+    <br />
+    <button onclick="window.location.href='../index.html';">Return</button>
     <?php
 
     ?>

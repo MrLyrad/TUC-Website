@@ -80,6 +80,15 @@
             <input type="password" id="password_rep" name="password_rep">
             <br />
             <input type="submit" id="submit-button" name="submit" value="register">
+            <br />
         </form>
+
+        <br />
+        <p>Already have an account?</p>
+        <!-- Redirect to Registration -->
+        <button onclick="window.location.href='login.php';">login</button>
+
+        <br />
+        <button onclick="window.location.href='../index.html';">Maybe next time</button>
     </body>
 </html>
