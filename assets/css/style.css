@@ -408,7 +408,7 @@ h6 {
   font-size: 24px;
 }
 
-#hero .btn-get-started {
+#hero .btn-volunteer-now {
   font-family: "Jost", sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -422,7 +422,7 @@ h6 {
   background: #e78000;
 }
 
-#hero .btn-get-started:hover {
+#hero .btn-volunteer-now:hover {
   background: #ffc95b;
 }
 
@@ -493,7 +493,7 @@ h6 {
     width: 80%;
   }
 
-  #hero .btn-get-started {
+  #hero .btn-volunteer-now {
     font-size: 16px;
     padding: 10px 24px 11px 24px;
   }
