@@ -42,9 +42,11 @@
 
   <?php
     //get the values from db
-    //$event_image
-    $event_date = "01 March, 2020";
-    $event_time = "8:00 AM - 12:00 PM";
+    $event_image = "p";
+    $event_date_start = "01 March, 2020";
+    $event_date_end = "01 March, 2020";
+    $event_time_start = "8:00 AM";
+    $event_time_end = "8:00 AM";
     $event_title = "Sample Event 1";
     $event_content = "Sample Content 1";
   ?>
@@ -111,8 +113,8 @@
             <div class="portfolio-info">
               <h3 class="header-text-2">Event information</h3>
               <ul class="body-text">
-                <li><strong>Project Date</strong>:  <?php echo $event_date ?></li>
-                <li><strong>Project Time</strong>:  <?php echo $event_time ?></li>
+                <li><strong>Project Date</strong>:  <?php echo $event_date_start ?> - <?php echo $event_date_end ?></li>
+                <li><strong>Project Time</strong>:  <?php echo $event_time_start ?> - <?php echo $event_time_end ?></li>
               </ul>
             </div>
             <div class="portfolio-description">
