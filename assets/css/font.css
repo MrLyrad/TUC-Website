@@ -23,8 +23,13 @@
     text-align: center;
   }
 
+  .header-text-2{
+    font-family: Montserrat-ExtraBold;
+  }
+
 
   .body-text{
     font-family: Montserrat;
     text-align: justify;
   }
+
