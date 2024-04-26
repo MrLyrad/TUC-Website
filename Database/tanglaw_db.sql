@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2024 at 05:27 PM
+-- Generation Time: Apr 26, 2024 at 08:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,14 +29,25 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `events` (
   `event_image` blob NOT NULL,
-  `event_title` varchar(255) NOT NULL,
+  `event_name` varchar(255) NOT NULL,
+  `event_location` varchar(255) NOT NULL,
+  `event_contact_person` varchar(255) NOT NULL,
+  `event_contact` int(11) NOT NULL,
   `event_date_start` date NOT NULL,
   `event_date_end` date NOT NULL,
   `event_time_start` time(6) NOT NULL,
   `event_time_end` time(6) NOT NULL,
-  `event_content` text NOT NULL,
+  `event_content` varchar(255) NOT NULL,
   `event_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`event_image`, `event_name`, `event_location`, `event_contact_person`, `event_contact`, `event_date_start`, `event_date_end`, `event_time_start`, `event_time_end`, `event_content`, `event_id`) VALUES
+('', 'fsd', 'sdf', 'sdf', 0, '2024-04-09', '2024-04-30', '14:57:00.000000', '02:00:00.000000', 'sdf', 9),
+('', 'sdf', 'fsd', 'fsd', 2147483647, '2024-04-07', '2024-04-22', '02:00:00.000000', '05:57:00.000000', 'sdf', 10);
 
 -- --------------------------------------------------------
 
@@ -83,7 +94,7 @@ ALTER TABLE `volunteers`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `volunteers`

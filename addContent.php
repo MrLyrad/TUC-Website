@@ -104,7 +104,7 @@
     <section class="inner-page">
       <div class="container">
       <div class="line"></div>
-      <form method="POST" enctype="multipart/form-data">
+      <form action="addContent.php" method="POST" enctype="multipart/form-data">
                     <!-- get user's name -->
 
                     <div class="container-form">
@@ -185,8 +185,8 @@
                         <!-- Input for Event Description -->
                 
                         <div class="item11">
-                            <label for="event_description" class="textlabel input-head">Event Description</label><br>
-                            <textarea type="text" name="event_description" id="event_description" class="form-control" style="height: 300px;" >
+                            <label for="event_content" class="textlabel input-head">Event Description</label><br>
+                            <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" >
                             </textarea><br>   
                         </div>
                     </div>
@@ -212,7 +212,7 @@
         $event_date_end = $_POST['event_date_end']; //end date
         $event_time_start = $_POST['event_time_start']; //start time
         $event_time_end = $_POST['event_time_end']; //start time
-        $event_content = $_POST['event_description']; //event description
+        $event_content = $_POST['event_content']; //event description
 
         $addContent = "INSERT INTO events (image_encoded, event_name, event_location, event_contact_person, event_contact, event_date_start, event_date_end, event_time_start, event_time_end, event_content)
         VALUES ('$image_encoded', '$event_name', '$event_location', '$event_contact_person', '$event_contact', '$event_date_start', '$event_date_end', '$event_time_start', '$event_time_end', '$event_content')";
@@ -229,7 +229,7 @@
         if($prepare) {  //connection successful, complete the parameter details
 
         //complete preparation statement
-        mysqli_stmt_bind_param($stmt,"bsssssssss", $image_encoded, $event_name, $event_location, $event_contact_person, $event_contact, $event_date_start, $event_date_end, $event_time_start, $event_time_end, $event_content); //Define input variables here for storing to DB
+        mysqli_stmt_bind_param($stmt,"bsssisssss", $image_encoded, $event_name, $event_location, $event_contact_person, $event_contact, $event_date_start, $event_date_end, $event_time_start, $event_time_end, $event_content); //Define input variables here for storing to DB
         mysqli_stmt_execute($stmt); //execute the statment
 
         echo 
