@@ -59,13 +59,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link  active scrollto" href="#portfolio">Events</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><a class="nav-link scrollto " href="index.html#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.html#activities">Services</a></li>
+          <li><a class="nav-link  active scrollto" href="index.html#events">Events</a></li>
+          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+          <li><a class="login" href="Authentication/login.php">LOGIN</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -138,7 +138,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3 class="header-text-2">Tanglaw State University</h3>
+            <h3 class="header-text-2">Tanglaw University Center</h3>
             <p>
               A108 Adam Street <br>
               New York, NY 535022<br>
@@ -177,7 +177,7 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Tanglaw State University</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
       </div>
