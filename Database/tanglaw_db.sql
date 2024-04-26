@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2024 at 02:56 PM
+-- Generation Time: Apr 26, 2024 at 05:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `tanglaw_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `event_image` blob NOT NULL,
+  `event_title` varchar(255) NOT NULL,
+  `event_date_start` date NOT NULL,
+  `event_date_end` date NOT NULL,
+  `event_time_start` time(6) NOT NULL,
+  `event_time_end` time(6) NOT NULL,
+  `event_content` text NOT NULL,
+  `event_id` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -47,6 +64,12 @@ INSERT INTO `volunteers` (`volunteer_id`, `full_name`, `email`, `username`, `pas
 --
 
 --
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`event_id`);
+
+--
 -- Indexes for table `volunteers`
 --
 ALTER TABLE `volunteers`
@@ -55,6 +78,12 @@ ALTER TABLE `volunteers`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `event_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
