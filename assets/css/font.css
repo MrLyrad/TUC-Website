@@ -27,13 +27,21 @@
     font-family: Montserrat-ExtraBold;
   }
 
-  /* .header-text-2{
-    font-family: Bugaki-Oblique;
+  .input-head{
+    font-family: Montserrat-ExtraBold;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+
+  .body-text{
+    font-family: Montserrat;
+    text-align: justify;
   }
 
 
   .body-text{
     font-family: Bugaki;
     text-align: justify;
-  } */
+  } 
 

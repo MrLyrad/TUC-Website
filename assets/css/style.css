@@ -1824,3 +1824,80 @@ section {
     padding-top: 4px;
   }
 }
+
+/* inout content form */
+
+.image-container{
+  height: 300px; 
+  object-fit: contain;
+}
+
+.org { grid-area: organization; }
+.item1 { grid-area: image; }
+.item2 { grid-area: name; }
+.item3 { grid-area: location; }
+.item4 { grid-area: contact; }
+.item5 { grid-area: person; }
+.item6 { grid-area: startdate; }
+.item7 { grid-area: enddate; }
+.item8 { grid-area: timestart; }
+.item9 { grid-area: timeend; }
+.item10 { grid-area: instructions; }
+.item11 { grid-area: description; }
+
+.container-form {
+    display: grid;
+    grid-template-areas:
+    'image name location'
+    'image contact person'
+    'image startdate enddate'
+    'image timestart timeend'
+    'image description description';
+    padding: 10px;
+    padding-bottom: 0px;
+    grid-template-columns: repeat(3, 34% minmax(33%, 33%));
+    }
+
+    @media only screen and (max-width: 768px) {
+        .container-form {
+          grid-template-areas:
+            'name'
+            'image'
+            'organization'
+            'location'
+            'contact'
+            'person'
+            'startdate'
+            'enddate'
+            'timestart'
+            'timeend'
+            'instructions'
+            'description';
+          grid-template-columns: 1fr;  /* Single column for all items */
+        }
+        .container-event{
+            margin-top: 0px; 
+            margin-left: 10px; 
+            margin-right: 10px;
+            margin-bottom: 100px;
+        }
+        .image-container{
+            height: 300px; 
+        }
+      }
+
+.container-form > div {
+    font-size: 10px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.submitbutton{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.line{
+  margin-top: 20px;
+  border-top: 1px solid rgba(67, 166, 141, 0.9);
+}
