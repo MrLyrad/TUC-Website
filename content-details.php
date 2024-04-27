@@ -76,7 +76,6 @@
   </header><!-- End Header -->
 
   <main id="main">
-
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
@@ -85,26 +84,26 @@
           <li>Event Details</li>
         </ol>
         <h2 class="header-text-2">Event Details</h2>
-
       </div>
     </section><!-- End Breadcrumbs -->
 
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
-
         <div class="row gy-4">
-
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
-
-
                 <!-- Event Image -->
                 <div class="swiper-slide">
-                  <?php echo '<img src="data:image/*;base64,' . $event['event_image'] . '" alt="image">'; ?>
+                  <?php
+                  if (strlen($event['event_image']) > 0){
+                      echo '<div class="portfolio-img"><img src="data:image/*;base64,' . $event['event_image'] . '" class="img-fluid" alt="image"></div>';
+                   }else{
+                      echo '<div class="portfolio-img"><img src="assets/img/placeholder.jpg" class="img-fluid" alt="image"></div>';
+                   }
+                  ?>
                 </div>
-
               </div>
               <div class="swiper-pagination"></div>
             </div>
