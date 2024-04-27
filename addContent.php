@@ -69,7 +69,7 @@
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-    <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+    <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto " href="#hero">Home</a></li>
@@ -93,7 +93,7 @@
       <div class="container">
 
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li>Content Addition</li>
         </ol>
         <h2 class="header-text-2">Content Addition</h2>

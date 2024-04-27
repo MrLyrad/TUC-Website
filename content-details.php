@@ -58,16 +58,16 @@
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-    <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+    <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="index.html#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#activities">Services</a></li>
-          <li><a class="nav-link  active scrollto" href="index.html#events">Events</a></li>
-          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+          <li><a class="nav-link scrollto " href="index.php#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.php#activities">Services</a></li>
+          <li><a class="nav-link  active scrollto" href="index.php#events">Events</a></li>
+          <li><a class="nav-link scrollto" href="index.php#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
           <li><a class="login" href="Authentication/login.php">LOGIN</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -81,7 +81,7 @@
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li>Event Details</li>
         </ol>
         <h2 class="header-text-2">Event Details</h2>
