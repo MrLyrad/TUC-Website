@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2024 at 08:58 PM
+-- Generation Time: Apr 27, 2024 at 12:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,9 +35,9 @@ CREATE TABLE `events` (
   `event_contact` int(11) NOT NULL,
   `event_date_start` date NOT NULL,
   `event_date_end` date NOT NULL,
-  `event_time_start` time(6) NOT NULL,
-  `event_time_end` time(6) NOT NULL,
-  `event_content` varchar(255) NOT NULL,
+  `event_time_start` time NOT NULL,
+  `event_time_end` time NOT NULL,
+  `event_content` mediumtext NOT NULL,
   `event_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -46,8 +46,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`event_image`, `event_name`, `event_location`, `event_contact_person`, `event_contact`, `event_date_start`, `event_date_end`, `event_time_start`, `event_time_end`, `event_content`, `event_id`) VALUES
-('', 'fsd', 'sdf', 'sdf', 0, '2024-04-09', '2024-04-30', '14:57:00.000000', '02:00:00.000000', 'sdf', 9),
-('', 'sdf', 'fsd', 'fsd', 2147483647, '2024-04-07', '2024-04-22', '02:00:00.000000', '05:57:00.000000', 'sdf', 10);
+('', 'Sampleee 1', 'gfd', 'gdf', 0, '2024-04-10', '2024-04-16', '20:00:00', '15:00:00', 'gdf', 11),
+('', 'sample', 'dfdf', 'sdf', 0, '2024-04-19', '2024-04-03', '04:50:00', '16:51:00', 'sample', 13);
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,7 @@ ALTER TABLE `volunteers`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `event_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
