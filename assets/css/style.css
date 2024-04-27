@@ -10,13 +10,14 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: Montserrat;
+  font-family: "Montserrat";
   color: #444444;
 }
 
 a {
   color: #e78000;
   text-decoration: none;
+  font-family: "Bugaki";
 }
 
 a:hover {
@@ -30,7 +31,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Montserrat-ExtraBold;
+  font-family: "Bugaki";
 }
 
 /*--------------------------------------------------------------
@@ -409,7 +410,7 @@ h6 {
 }
 
 #hero .btn-volunteer-now {
-  font-family: Bugaki-Oblique;
+  font-family: "Bugaki";
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
@@ -625,7 +626,7 @@ section {
 }
 
 .about .content .btn-learn-more {
-  font-family: Montserrat-ExtraBold;
+  font-family: "Montserrat-ExtraBold";
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -698,7 +699,7 @@ section {
 .why-us .accordion-list a {
   display: block;
   position: relative;
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
@@ -776,69 +777,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Skills
---------------------------------------------------------------*/
-.skills .content h3 {
-  font-weight: 700;
-  font-size: 32px;
-  color: #e78000;
-  font-family: "Poppins", sans-serif;
-}
-
-.skills .content ul {
-  list-style: none;
-  padding: 0;
-}
-
-.skills .content ul li {
-  padding-bottom: 10px;
-}
-
-.skills .content ul i {
-  font-size: 20px;
-  padding-right: 4px;
-  color: #e78000;
-}
-
-.skills .content p:last-child {
-  margin-bottom: 0;
-}
-
-.skills .progress {
-  height: 60px;
-  display: block;
-  background: none;
-  border-radius: 0;
-}
-
-.skills .progress .skill {
-  padding: 0;
-  margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  color: #e78000;
-}
-
-.skills .progress .skill .val {
-  float: right;
-  font-style: normal;
-}
-
-.skills .progress-bar-wrap {
-  background: #e8edf5;
-  height: 10px;
-}
-
-.skills .progress-bar {
-  width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: #ffc95b;
-}
-
-/*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
 .services .icon-box {
@@ -903,7 +841,7 @@ section {
 }
 
 .cta .cta-btn {
-  font-family: "Jost", sans-serif;
+  font-family: "Bugaki";
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
@@ -912,7 +850,7 @@ section {
   border-radius: 50px;
   transition: 0.5s;
   margin: 10px;
-  border: 2px solid #fff;
+  border: 2px solid #e78000;
   color: #fff;
 }
 
@@ -954,7 +892,7 @@ section {
   transition: all 0.3s;
   padding: 8px 20px;
   border-radius: 50px;
-  font-family: Bugaki-Oblique;
+  font-family: "Bugaki";
 }
 
 .portfolio #portfolio-flters li:hover,
@@ -1219,7 +1157,7 @@ section {
   font-size: 48px;
   color: #e78000;
   font-weight: 400;
-  font-family: "Jost", sans-serif;
+  font-family: "Bugaki";
   margin-bottom: 25px;
 }
 
@@ -1344,7 +1282,7 @@ section {
 .faq .faq-list a {
   display: block;
   position: relative;
-  font-family: Bugaki-Oblique;
+  font-family: "Bugaki";
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
@@ -1717,7 +1655,7 @@ section {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Jost", sans-serif;
+  font-family: "Montserrat";
   color: #5e5e5e;
 }
 
