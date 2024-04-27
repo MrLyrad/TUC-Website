@@ -1,6 +1,12 @@
 <?php
+    session_start();
+    if (!isset($_SESSION["admin"])) {
+        header("Location: ../authentication/adminLogin.php");
+    }
+?>
+<?php
 // Include database connection file
-include 'db-connector.php';
+include '../db-connector.php';
 
     if (isset($_GET['id']))
     {

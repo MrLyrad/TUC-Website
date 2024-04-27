@@ -1,3 +1,15 @@
+<?php
+  session_start();
+  if(isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+    $email = $user["email"];
+    $username = $user["username"];
+  } else {
+    $user = null;
+    $email = null;
+    $username = null;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +72,13 @@
           <li><a class="nav-link scrollto" href="#events">Events</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="login" href="Authentication/login.php">LOGIN</a></li>
+          <?php
+            if(!isset($_SESSION["user"])){
+              echo "<li><a class='login' href='authentication/login.php'>LOGIN</a></li>";
+            } else {
+              echo "<li><a class='login' href='authentication/logout.php'>LOGOUT</a></li>";
+            }
+          ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -74,10 +92,19 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <?php
+            if(!is_null($username)){
+              echo "<h1 style='color: #ffc95b;'>Welcome ".$username."!</h1>";
+            }
+          ?>
           <h1 style="color: #ffc95b;">Youth, Let Your Light Shine.</h1>
           <h2 style="font-family: Montserrat;">Tanglaw University Center is a venue of KALFI (Kalinangan Youth Foundation), which organizes activities with the primary purpose of providing cultural, academic, and spiritual development to high school, university students, and young professional women.</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="Authentication/signup.php" class="btn-volunteer-now">Volunteer Now</a>
+            <?php 
+              if(!isset($_SESSION["user"])){
+                echo "<a href='authentication/signup.php' class='btn-volunteer-now'>Volunteer Now</a>";
+              }
+            ?>
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
