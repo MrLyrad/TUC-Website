@@ -41,14 +41,17 @@
 <body>
 
   <?php
+    include 'db-connector.php';
     //get the values from db
-    $event_image = "p";
-    $event_date_start = "01 March, 2020";
-    $event_date_end = "01 March, 2020";
-    $event_time_start = "8:00 AM";
-    $event_time_end = "8:00 AM";
-    $event_title = "Sample Event 1";
-    $event_content = "Sample Content 1";
+    if(isset($_GET['id']))
+    {
+      $id = $_GET['id'];
+      $getContent = "SELECT  * FROM events WHERE event_id = :eventID";
+      $stmt = $pdo_obj->prepare($getContent);
+        $stmt->bindParam(':eventID', $id);
+        $stmt->execute();
+        $event = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
   ?>
 
   <!-- ======= Header ======= -->
@@ -99,7 +102,7 @@
 
                 <!-- Event Image -->
                 <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-1.jpg" alt="">
+                  <?php echo '<img src="data:image/*;base64,' . $event['event_image'] . '" alt="image">'; ?>
                 </div>
 
               </div>
@@ -107,20 +110,23 @@
             </div>
           </div>
 
-
+          
           <!-- Event Details -->
           <div class="col-lg-4">
-            <div class="portfolio-info">
+          <h2 class="header-text-2"><?php echo $event['event_name']; ?></h2>
+            <div class="portfolio-info" style="margin-top: 40px">
               <h3 class="header-text-2">Event information</h3>
               <ul class="body-text">
-                <li><strong>Project Date</strong>:  <?php echo $event_date_start ?> - <?php echo $event_date_end ?></li>
-                <li><strong>Project Time</strong>:  <?php echo $event_time_start ?> - <?php echo $event_time_end ?></li>
+              <li><strong>Location</strong>:  <?php echo $event['event_location']; ?></li>
+              <li><strong>Representative</strong>:  <?php echo $event['event_contact_person']; ?></li>
+              <li><strong>Contact Number</strong>:  <?php echo $event['event_contact']; ?></li>
+              <li><strong>Date</strong>: <?php echo date("F j, Y", strtotime($event['event_date_start'])); ?> - <?php echo date("F j, Y", strtotime($event['event_date_end'])); ?></li>
+              <li><strong>Time</strong>: <?php echo date("h:i A", strtotime($event['event_time_start'])); ?> - <?php echo date("h:i A", strtotime($event['event_time_end'])); ?></li>
               </ul>
             </div>
             <div class="portfolio-description">
-              <h2 class="header-text-2"><?php echo $event_title ?></h2>
               <p class="body-text">
-              <?php echo $event_content ?>
+              <?php echo $event['event_content']; ?>
               </p>
             </div>
           </div>

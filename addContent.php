@@ -55,7 +55,7 @@
     }
 
     function resetImage() {
-    document.getElementById('event_image').value = null;
+    document.getElementById('event_image').value = '';
     document.getElementById('myimage').style.display = "none"; 
     }
     
@@ -111,7 +111,7 @@
 
                         <div class="item2">
                             <label for="event_name" class="textlabel input-head">Event Title</label><br>
-                            <input type="text" name="event_name" id="event_name" class="form-control"><br>
+                            <input type="text" name="event_name" id="event_name" class="form-control" required><br>
                         </div>
                         
                         <!-- Input for image upload -->
@@ -137,56 +137,56 @@
                 
                         <div class="item3">
                             <label for="event_location" class="textlabel input-head">Location</label><br>
-                            <input type="text" name="event_location" id="event_location" class="form-control"><br>
+                            <input type="text" name="event_location" id="event_location" class="form-control" required><br>
                         </div>
 
                         <!-- Input for Event Contact Number -->
                 
                         <div class="item4">
                             <label for="event_contact" class="textlabel input-head">Contact Number</label><br>
-                            <input type="text" name="event_contact" id="event_contact" class="form-control"><br>
+                            <input type="text" name="event_contact" id="event_contact" class="form-control" required><br>
                         </div>
 
                         <!-- Input for Event Contact Person -->
 
                         <div class="item5">
                             <label for="event_contact_person" class="textlabel input-head">Contact Person</label><br>
-                            <input type="text" name="event_contact_person" id="event_contact_person" class="form-control"><br>
+                            <input type="text" name="event_contact_person" id="event_contact_person" class="form-control" required><br>
                         </div>
 
                         <!-- Input for Event Date start -->
                 
                         <div class="item6">
                             <label for="event_date_start" class="textlabel input-head">Start Date</label> <br>
-                            <input type="date" id="event_date_start" name="event_date_start" class="form-control"><br>
+                            <input type="date" id="event_date_start" name="event_date_start" class="form-control" required><br>
                         </div>
 
                         <!-- Input for Event Date end -->
 
                         <div class="item7">
                             <label for="event_date_end" class="textlabel input-head">End Date</label> <br>
-                            <input type="date" id="event_date_end" name="event_date_end" class="form-control"><br>
+                            <input type="date" id="event_date_end" name="event_date_end" class="form-control" required><br>
                         </div>
 
                         <!-- Input for Event Time start -->
   
                         <div class="item8">
                             <label for="event_time_start" class="textlabel input-head">Start time</label> <br>
-                            <input type="time" id="event_time_start" name="event_time_start" class="form-control"> <br>    
+                            <input type="time" id="event_time_start" name="event_time_start" class="form-control" required> <br>    
                         </div>
 
                         <!-- Input for Event Time end -->
                 
                         <div class="item9">
                             <label for="event_time_end" class="textlabel input-head">End time</label> <br>
-                            <input type="time" id="event_time_end" name="event_time_end" class="form-control"> <br>    
+                            <input type="time" id="event_time_end" name="event_time_end" class="form-control" required> <br>    
                         </div>
 
                         <!-- Input for Event Description -->
                 
                         <div class="item11">
                             <label for="event_content" class="textlabel input-head">Event Description</label><br>
-                            <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" ></textarea><br>   
+                            <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" required></textarea><br>   
                         </div>
                     </div>
                     <div class="line"></div>
@@ -199,10 +199,16 @@
     <!-- ======= Storing Input values to database ======= -->
     <?php
 
+      include 'db-connector.php';
+
       if(isset($_POST['bttn']))
       {
-        $image_encoded = file_get_contents($_FILES['event_image']['tmp_name']); //event image
-        $event_image = base64_encode($image_encoded);
+        if (isset($_FILES['event_image']) && !empty($_FILES['event_image']['tmp_name'])) {
+          $event_image = file_get_contents($_FILES['event_image']['tmp_name']); //event image
+        $image_encoded = base64_encode($event_image);
+        }
+        
+
         $event_name = $_POST['event_name']; //event name
         $event_location = $_POST['event_location']; //event location
         $event_contact_person = $_POST['event_contact_person']; //contact person
@@ -212,25 +218,11 @@
         $event_time_start = $_POST['event_time_start']; //start time
         $event_time_end = $_POST['event_time_end']; //start time
         $event_content = $_POST['event_content']; //event description
-
-        $addContent = "INSERT INTO events (image_encoded, event_name, event_location, event_contact_person, event_contact, event_date_start, event_date_end, event_time_start, event_time_end, event_content)
+   
+  try{
+    $addEvent = "INSERT INTO events (event_image, event_name, event_location, event_contact_person, event_contact, event_date_start, event_date_end, event_time_start, event_time_end, event_content)
         VALUES ('$image_encoded', '$event_name', '$event_location', '$event_contact_person', '$event_contact', '$event_date_start', '$event_date_end', '$event_time_start', '$event_time_end', '$event_content')";
-
-        require_once("db-connector.php");    //connector file
-
-        //SQL statment for insertion of inputs to DB
-        $sql = "INSERT INTO events (event_image, event_name, event_location, event_contact_person, event_contact, event_date_start, event_date_end, event_time_start, event_time_end, event_content) VALUES (?,?,?,?,?,?,?,?,?,?)"; //Values are abstracted to prevent SQL injection
-
-        $stmt = mysqli_stmt_init($connection);  //create statement
-        $prepare = mysqli_stmt_prepare($stmt, $sql);    //prepare SQL statement
-
-        //Save volunteer registration
-        if($prepare) {  //connection successful, complete the parameter details
-
-        //complete preparation statement
-        mysqli_stmt_bind_param($stmt,"bsssisssss", $image_encoded, $event_name, $event_location, $event_contact_person, $event_contact, $event_date_start, $event_date_end, $event_time_start, $event_time_end, $event_content); //Define input variables here for storing to DB
-        mysqli_stmt_execute($stmt); //execute the statment
-
+        $pdo_obj->exec($addEvent);
         echo 
         "
         <script>
@@ -238,8 +230,10 @@
         document.location.href = 'contentDashboard.php';
         </script>
         ";
-    }
-  } else {
+
+  }
+  catch (PDOException $e) 
+  {
     "
   <script>
   alert('Addition Unsuccessful');
@@ -247,6 +241,7 @@
   </script>
   ";
   }
+}
   ?>
 
     </section>

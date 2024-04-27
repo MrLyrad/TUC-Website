@@ -39,25 +39,41 @@
   ======================================================== -->
 
   <script>
-    function onFileSelected(event) {
-    var selectedFile = event.target.files[0];
-    var reader = new FileReader();
 
-    var imgtag = document.getElementById("myimage");
-    imgtag.title = selectedFile.name;
-
-    reader.onload = function(event) {
-        imgtag.src = event.target.result;
-    };
-
-    reader.readAsDataURL(selectedFile);
-    document.getElementById('myimage').style.display = ""
-    }
 
     function resetImage() {
     document.getElementById('event_image').value = null;
     document.getElementById('myimage').style.display = "none"; 
+    <?php
+      $event_image=null;
+    ?>    
     }
+
+    function onFileSelected(event) {
+  const removeImageInput = document.getElementById('remove_image');
+  const selectedFile = event.target.files[0];
+
+  if (!selectedFile) {
+    // No file selected, set remove_image to true and hide the image
+    removeImageInput.value = 'true';
+    document.getElementById('myimage').style.display = "none";
+    return;  // Exit the function if no file selected
+  }
+
+  // File selected, set remove_image to false
+  removeImageInput.value = 'false';
+
+  const reader = new FileReader();
+  const imgtag = document.getElementById("myimage");
+  imgtag.title = selectedFile.name;
+
+  reader.onload = function(event) {
+    imgtag.src = event.target.result;
+  };
+
+  reader.readAsDataURL(selectedFile);
+  document.getElementById('myimage').style.display = "";
+}
     
   </script>
 </head>
@@ -93,6 +109,9 @@
         // Extract values from the fetched event record
         if($event)
         {
+            $place_holder = $event['event_image'];
+
+
             $event_image = $event['event_image'];
             $event_name = $event['event_name'];
             $event_location = $event['event_location'];
@@ -103,7 +122,30 @@
             $event_time_start = $event['event_time_start'];
             $event_time_end = $event['event_time_end'];
             $event_content = $event['event_content'];
-        }
+
+            // Check if $event_image is indeed a blob
+            if (gettype($event_image) === 'resource' && getresourcetype($event_image) === 'stream') {
+
+              // Extract image type (optional)
+              $image_type = explode('/', $event['event_image_type'])[1] ?? 'unknown'; // Use 'unknown' if type unavailable
+            
+              // Create a temporary file
+              $temp_file = tempnam(sys_get_temp_dir(), 'event_image');
+            
+              // Write the blob data to the temporary file
+              if (file_put_contents($temp_file, $event_image) === false) {
+                error_log("Failed to write image data to temporary file.");
+                return; // Handle error here (e.g., display error message)
+              }
+            
+              // Sanitize and create a safe data URI (example)
+              $data_uri = "data:image/" . $image_type . ";base64," . base64_encode(file_get_contents($temp_file));
+
+            
+              // Unlink the temporary file (clean up)
+              unlink($temp_file);
+            }
+      }
 
     }
 
@@ -159,7 +201,7 @@
 
                         <div class="item2">
                             <label for="event_name" class="textlabel input-head">Event Title</label><br>
-                            <input type="text" name="event_name" id="event_name" class="form-control" value="<?php echo $event_name ?>"><br>
+                            <input type="text" name="event_name" id="event_name" class="form-control" value="<?php echo $event_name ?>" required><br>
                         </div>
                         
                         <!-- Input for image upload -->
@@ -168,11 +210,11 @@
                             <label for="event_image" class="textlabel input-head">Choose Image</label><br>
 
                             <input type="file" id="event_image" name="event_image" class="form-control" onchange="onFileSelected(event)" style="height: 45px;" accept="image/*">
-
+        
                             <br>
                             
                             <div>
-                                <img id="myimage" class="form-control image-container" src="$event_image">
+                                <?php echo '<img id="myimage" class="form-control image-container" src="data:image/*;base64,' . $event['event_image'] . '" alt="image">'; ?>
                             </div><br><br>
 
                             <div style="text-align: center;">
@@ -185,57 +227,59 @@
                 
                         <div class="item3">
                             <label for="event_location" class="textlabel input-head">Location</label><br>
-                            <input type="text" name="event_location" id="event_location" class="form-control" value="<?php echo $event_location ?>"><br>
+                            <input type="text" name="event_location" id="event_location" class="form-control" value="<?php echo $event_location ?>" required><br>
                         </div>
 
                         <!-- Input for Event Contact Number -->
                 
                         <div class="item4">
                             <label for="event_contact" class="textlabel input-head">Contact Number</label><br>
-                            <input type="text" name="event_contact" id="event_contact" class="form-control" value="<?php echo $event_contact ?>"><br>
+                            <input type="text" name="event_contact" id="event_contact" class="form-control" value="<?php echo $event_contact ?>" required><br>
                         </div>
 
                         <!-- Input for Event Contact Person -->
 
                         <div class="item5">
                             <label for="event_contact_person" class="textlabel input-head">Contact Person</label><br>
-                            <input type="text" name="event_contact_person" id="event_contact_person" class="form-control" value="<?php echo $event_contact_person ?>"><br>
+                            <input type="text" name="event_contact_person" id="event_contact_person" class="form-control" value="<?php echo $event_contact_person ?>" required><br>
                         </div>
 
                         <!-- Input for Event Date start -->
                 
                         <div class="item6">
                             <label for="event_date_start" class="textlabel input-head">Start Date</label> <br>
-                            <input type="date" id="event_date_start" name="event_date_start" class="form-control" value="<?php echo $event_date_start?>"><br>
+                            <input type="date" id="event_date_start" name="event_date_start" class="form-control" value="<?php echo $event_date_start?>" required><br>
                         </div>
 
                         <!-- Input for Event Date end -->
 
                         <div class="item7">
                             <label for="event_date_end" class="textlabel input-head">End Date</label> <br>
-                            <input type="date" id="event_date_end" name="event_date_end" class="form-control" value="<?php echo $event_date_end ?>"><br>
+                            <input type="date" id="event_date_end" name="event_date_end" class="form-control" value="<?php echo $event_date_end ?>" required><br>
                         </div>
 
                         <!-- Input for Event Time start -->
   
                         <div class="item8">
                             <label for="event_time_start" class="textlabel input-head">Start time</label> <br>
-                            <input type="time" id="event_time_start" name="event_time_start" class="form-control" value="<?php echo $event_time_start ?>"> <br>    
+                            <input type="time" id="event_time_start" name="event_time_start" class="form-control" value="<?php echo $event_time_start ?>" required> <br>    
                         </div>
 
                         <!-- Input for Event Time end -->
                 
                         <div class="item9">
                             <label for="event_time_end" class="textlabel input-head">End time</label> <br>
-                            <input type="time" id="event_time_end" name="event_time_end" class="form-control" value="<?php echo $event_time_end ?>"> <br>    
+                            <input type="time" id="event_time_end" name="event_time_end" class="form-control" value="<?php echo $event_time_end ?>" required> <br>    
                         </div>
 
                         <!-- Input for Event Description -->
                 
                         <div class="item11">
                             <label for="event_content" class="textlabel input-head">Event Description</label><br>
-                            <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;"><?php echo htmlspecialchars($event_content); ?></textarea><br>   
+                            <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" required><?php echo htmlspecialchars($event_content); ?></textarea><br>   
                         </div>
+
+                        <input type="hidden" id="remove_image" name="remove_image" value="false">
                     </div>
                     <div class="line"></div>
                     
@@ -251,6 +295,23 @@
     {
         include 'db-connector.php';
 
+
+        if (isset($_FILES['event_image']) && !empty($_FILES['event_image']['tmp_name'])) {
+          // Check for remove_image flag
+          if (isset($_POST['remove_image']) && $_POST['remove_image'] == 'true') {
+            // User wants to remove the image, set event_image to null
+            $event_image = null;
+          } else {
+            // New image uploaded, process it
+            // ... (e.g., read image data, base64 encode)
+            $image_encoded = file_get_contents($_FILES['event_image']['tmp_name']);
+            $event_image = base64_encode($image_encoded);
+          }
+        } else {
+          // No file uploaded or existing image removal requested (through hidden field)
+          $event_image = null;  // Set event_image to null in this case as well
+        }
+
         $event_id = $_GET['id'];
         $event_name = htmlspecialchars($_POST['event_name']); //event name
         $event_location = htmlspecialchars($_POST['event_location']); //event location
@@ -261,17 +322,6 @@
         $event_time_start = htmlspecialchars($_POST['event_time_start']); //start time
         $event_time_end = htmlspecialchars($_POST['event_time_end']); //start time
         $event_content = htmlspecialchars($_POST['event_content']); //event description
-
-        // Check if image file was uploaded
-        if (isset($_FILES['image_encoded']['tmp_name']) && $_FILES['image_encoded']['error'] === UPLOAD_ERR_OK) {
-            // Read image data
-            $image_encoded = file_get_contents($_FILES['event_image']['tmp_name']);
-            // Encode image data as base64
-            $event_image = base64_encode($image_encoded);
-        } else {
-            // Default value for image if not uploaded
-            $event_image = '';
-        }
 
         // Update Events Table
         $updateEvent = "UPDATE events SET 
@@ -288,6 +338,7 @@
                         WHERE event_id = :event_id";
         // Prepare and execute the statement
        
+
             $stmt = $pdo_obj->prepare($updateEvent);
             $stmt->bindParam(':event_image', $event_image);
             $stmt->bindParam(':event_name', $event_name);
@@ -300,18 +351,25 @@
             $stmt->bindParam(':event_time_end', $event_time_end);
             $stmt->bindParam(':event_content', $event_content);
             $stmt->bindParam(':event_id', $event_id);
-            $stmt->execute();
-            echo 
-            "
-            <script>
-            alert('Event Updated');
-            document.location.href = 'contentDashboard.php';
-            </script>
-            ";
-
-
-
-
+            try{
+              $stmt->execute();
+              echo 
+              "
+              <script>
+              alert('Event Updated');
+              document.location.href = 'contentDashboard.php';
+              </script>
+              ";
+            }catch (Exception $e){
+              echo 
+              "
+              <script>
+              alert('Image too Large');
+              document.location.href = 'contentDashboard.php';
+              </script>
+              ";
+            }
+            
     } 
   ?>
 
