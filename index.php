@@ -94,7 +94,7 @@
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <?php
             if(!is_null($username)){
-              echo "<h1 style='color: #ffc95b;'>Welcome ".$username."!</h1>";
+              echo "<h1 style='color: #ffc95b;'>Welcome ".$username."</h1>";
             }
           ?>
           <h1 style="color: #ffc95b;">Youth, Let Your Light Shine.</h1>

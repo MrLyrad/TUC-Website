@@ -39,9 +39,7 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
   <link href="../assets/css/font.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   
-
   <!-- =======================================================
   * Template Name: Arsha
   * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
@@ -50,16 +48,45 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+  <script>
+    function onFileSelected(event) {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+
+    var imgtag = document.getElementById("myimage");
+    imgtag.title = selectedFile.name;
+
+    reader.onload = function(event) {
+        imgtag.src = event.target.result;
+    };
+
+    reader.readAsDataURL(selectedFile);
+    document.getElementById('myimage').style.display = ""
+    }
+
+    function resetImage() {
+    document.getElementById('event_image').value = '';
+    document.getElementById('myimage').style.display = "none"; 
+    }
+  </script>
+   <style>
+    .container-form {
+          grid-template-areas:
+            'name'
+            'image'
+            'location'
+            'contact'
+            'person'
+            'startdate'
+            'enddate'
+            'timestart'
+            'timeend'
+            'instructions'
+            'description';
+          grid-template-columns: 1fr;  /* Single column for all items */
+        }
+    </style>
 </head>
-
-<?php
-    require_once("../db-connector.php");
-
-    // Fetch data from the Orgs table
-    $query = "SELECT * FROM events";
-    $stmt = $pdo_obj->query($query);
-    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 
 
 <body>
@@ -71,7 +98,7 @@
     <a href="adminHome.php" class="logo me-auto"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
         <ul>
-        <li><a class="nav-link scrollto" href="adminHome.php">Content Dashboard</a></li>
+          <li><a class="nav-link scrollto" href="adminHome.php">Content Dashboard</a></li>
           <li><a class="nav-link scrollto active" href="addAdmin.php">Add Admin</a></li>
           <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
         </ul>
@@ -86,21 +113,18 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-        <h2 class="header-text-2">Add Admin</h2>
+        <h2 class="header-text-2">Content Dashboard</h2>
         <?php
             echo "Welcome <b>".$admin_fullname."</b>";
         ?>
       </div>
-    </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
       <div class="container">
       <div class="line"></div>
+      <form method="POST" enctype="multipart/form-data">
 
-    <!-- Add Admin Form -->
-    <div class="container table-container">
-    <form action="addAdmin.php" method="POST" enctype="multipart/form-data">
-            <?php
+      <?php
                 //Run once form is submitted
                 if (isset($_POST["register"])) {
                     //initiate input variables
@@ -167,50 +191,54 @@
                             //complete preparation statement
                             mysqli_stmt_bind_param($stmt,"sss", $fullname, $email, $password_hash); //Define input variables here for storing to DB
                             mysqli_stmt_execute($stmt); //execute the statment
-
-                            echo "<div>Registration Successful!</div>"; //success confirmation
+                            //success confirmation
+                            echo 
+                            "
+                            <script>
+                            alert('Registration Successful!');
+                            document.location.href = 'adminHome.php';
+                            </script>
+                            ";
                         } else {
                             die("Something went wrong"); //database connection unsuccessful
                         }
                     }
                 }
             ?>
-
-            <!--Registration form-->
-            <!-- Input for Email -->
             <div class="container-form">
-                <div class="item1">
-                    <label for="admin_email" class="textlabel input-head">Email</label><br>
-                    <input type="text" name="admin_email" id="admin_email" class="form-control" required><br>
-                </div>
-                
-                <!-- Input for Full Name -->
+                <!-- Full Name -->
                 <div class="item2">
                     <label for="admin_fullname" class="textlabel input-head">Full Name</label><br>
-                    <input type="text" name="admin_fullname" id="admin_fullname" class="form-control" required><br>
+                    <input type="text" id="admin_fullname" name="admin_fullname" class="form-control" required>
                 </div>
 
-                <!-- Input for Password -->             
+                <div class="item1">
+                    <label for="admin_email" class="textlabel input-head">Email</label><br>
+                    <input type="email" id="admin_email" name="admin_email" class="form-control" required>
+                </div>
+                
+                <!-- Password -->
                 <div class="item3">
                     <label for="admin_password" class="textlabel input-head">Password</label><br>
-                    <input type="text" name="admin_password" id="admin_password" class="form-control" required><br>
+                    <input type="password" id="admin_password" name="admin_password" class="form-control" required>
                 </div>
 
-                <!-- Input for Confirm Password -->
+                <!-- Confirm Password -->
                 <div class="item4">
                     <label for="password_rep" class="textlabel input-head">Confirm Password</label><br>
-                    <input type="text" name="password_rep" id="password_rep" class="form-control" required><br>
+                    <input type="password" id="password_rep" name="password_rep" class="form-control" required>
                 </div>
-
-                                  
-
+            </div>
+            <div class="line"></div>
+            
+            <div class="submitbutton">
+              <button type="submit" id="register-button" name="register" value="register" class="btn btn-success my-2 my-sm-0" style="width: 200px; margin-bottom: 20px;">Register</button>
+            </div>
         </form>
-    </div>
-    <div class="line"></div>
-    <div class="submitbutton">
-        <button type="submit" name="bttn" class="btn btn-success my-2 my-sm-0" style="width: 200px; margin-bottom: 20px;">Submit</button>
-    </div>
-</section>
+      </div>
+
+
+    </section>
 
   </main><!-- End #main -->
 
@@ -298,12 +326,7 @@
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
-<!-- bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  
 </body>
 
 </html>

@@ -1,3 +1,16 @@
+<?php
+  session_start();
+  if(isset($_SESSION["user"])) {
+    $user = $_SESSION["user"];
+    $email = $user["email"];
+    $username = $user["username"];
+  } else {
+    $user = null;
+    $email = null;
+    $username = null;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +81,13 @@
           <li><a class="nav-link  active scrollto" href="index.php#events">Events</a></li>
           <li><a class="nav-link scrollto" href="index.php#team">Team</a></li>
           <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
-          <li><a class="login" href="Authentication/login.php">LOGIN</a></li>
+          <?php
+            if(!isset($_SESSION["user"])){
+              echo "<li><a class='login' href='authentication/login.php'>LOGIN</a></li>";
+            } else {
+              echo "<li><a class='login' href='authentication/logout.php'>LOGOUT</a></li>";
+            }
+          ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
