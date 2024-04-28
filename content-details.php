@@ -2,6 +2,7 @@
   session_start();
   if(isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
+    $volunteer_id = $user["volunteer_id"];
     $email = $user["email"];
     $username = $user["username"];
   } else {
@@ -54,6 +55,7 @@
 <body>
 
   <?php
+  ob_start();
     include 'db-connector.php';
     //get the values from db
     if(isset($_GET['id']))
@@ -146,6 +148,41 @@
               <p class="body-text">
               <?php echo $event['event_content']; ?>
               </p>
+            </div>
+
+            <div>
+              <form method="post">
+                   <input type="submit" name="register-event" value="Register">
+              </form>
+              <?php 
+                if(isset($_POST["register-event"])){
+                  if(isset($_SESSION["user"])){
+                    //
+                    // Add error handling to avoid duplicate event registrations
+                    //
+                    $reg_to_event = "INSERT INTO volunteer_events (volunteer_id, event_id) VALUES (?,?)";
+
+                    $stmt = mysqli_stmt_init($connection);  //create statement
+                    $prepare = mysqli_stmt_prepare($stmt, $reg_to_event);    //prepare SQL statement
+
+                    //Save volunteer registration
+                    if($prepare) {  //connection successful, complete the parameter details
+
+                        //complete preparation statement
+                        mysqli_stmt_bind_param($stmt,"ii", $volunteer_id, $id); //Define input variables here for storing to DB
+                        mysqli_stmt_execute($stmt); //execute the statment
+
+                        echo "Successfully registered"; //success confirmation
+                    } else {
+                        die("Something went wrong"); //database connection unsuccessful
+                    }
+                  } else {
+                    header("Location: authentication/login.php");
+                    ob_end_flush();
+                    die;
+                  }
+                }
+              ?>
             </div>
           </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2024 at 05:05 PM
+-- Generation Time: Apr 28, 2024 at 10:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -96,6 +96,25 @@ INSERT INTO `volunteers` (`volunteer_id`, `full_name`, `email`, `username`, `pas
 (5, 'a', 'a@a.com', 'root', '$2y$10$KCuir/uxTz9oGSAWHSFzG.ZLIcybLuG7G7J/wNkDLS7Brk/iMcbq6'),
 (6, 'Franz', 'franz@example.com', 'Franz', '$2y$10$g/jxQlCwYJ0/HLiDmNwc8eZPe5j00bS0skRu57l11vMCGOoCTkszG');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `volunteer_events`
+--
+
+CREATE TABLE `volunteer_events` (
+  `volunteer_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `volunteer_events`
+--
+
+INSERT INTO `volunteer_events` (`volunteer_id`, `event_id`) VALUES
+(5, 1),
+(6, 2);
+
 --
 -- Indexes for dumped tables
 --
@@ -119,6 +138,13 @@ ALTER TABLE `volunteers`
   ADD PRIMARY KEY (`volunteer_id`);
 
 --
+-- Indexes for table `volunteer_events`
+--
+ALTER TABLE `volunteer_events`
+  ADD PRIMARY KEY (`volunteer_id`,`event_id`),
+  ADD KEY `event_id` (`event_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -139,6 +165,17 @@ ALTER TABLE `events`
 --
 ALTER TABLE `volunteers`
   MODIFY `volunteer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `volunteer_events`
+--
+ALTER TABLE `volunteer_events`
+  ADD CONSTRAINT `volunteer_events_ibfk_1` FOREIGN KEY (`volunteer_id`) REFERENCES `volunteers` (`volunteer_id`),
+  ADD CONSTRAINT `volunteer_events_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
