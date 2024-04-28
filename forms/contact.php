@@ -24,13 +24,6 @@
 
     $mail->Subject = $_POST["subject"];
     $mail->Body = $_POST["message"];
-
-    try {
-      $mail->send();
-      echo 'Success';
-    } catch (Exception $e) {
-      echo 'Email sending failed: ' . $e->getMessage();
-    }
-
+    $mail->send();
   }
 ?>
