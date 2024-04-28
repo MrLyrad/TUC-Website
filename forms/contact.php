@@ -6,7 +6,7 @@
   require 'phpmailer/src/PHPMailer.php';
   require 'phpmailer/src/SMTP.php';
 
-  if(isset($_POST['send'])){
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail = new PHPMailer(true);
 
     $mail->isSMTP();
@@ -24,9 +24,13 @@
 
     $mail->Subject = $_POST["subject"];
     $mail->Body = $_POST["message"];
-    
-    $mail->send();
+
+    try {
+      $mail->send();
+      echo 'Success';
+    } catch (Exception $e) {
+      echo 'Email sending failed: ' . $e->getMessage();
+    }
 
   }
-
 ?>
