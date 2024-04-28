@@ -2,6 +2,10 @@
     session_start();
     if (!isset($_SESSION["admin"])) {
         header("Location: ../authentication/adminLogin.php");
+    }  else {
+        $admin = $_SESSION["admin"];
+        $admin_fullname = $admin["admin_fullname"];
+        $admin_email = $admin["admin_email"];
     }
 ?>
 <!DOCTYPE html>
@@ -11,7 +15,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Content Addition</title>
+  <title>Add Content</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -75,16 +79,12 @@
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-    <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+    <a href="adminHome.php" class="logo me-auto"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><a class="nav-link scrollto active" href="adminHome.php">Content Dashboard</a></li>
+          <li><a class="nav-link scrollto" href="addAdmin.php">Add Admin</a></li>
+          <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -97,13 +97,14 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-
         <ol>
-          <li><a href="index.php">Home</a></li>
-          <li>Content Addition</li>
+          <li><a href="adminHome.php">Content Dashboard</a></li>
+          <li>Add Content</li>
         </ol>
-        <h2 class="header-text-2">Content Addition</h2>
-
+        <h2 class="header-text-2">Add Content</h2>
+        <?php
+            echo "Welcome <b>".$admin_fullname."</b>";
+        ?>
       </div>
     </section><!-- End Breadcrumbs -->
 
@@ -191,14 +192,14 @@
                         <!-- Input for Event Description -->
                 
                         <div class="item11">
-                            <label for="event_content" class="textlabel input-head">Event Description</label><br>
-                            <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" required></textarea><br>   
+                          <label for="event_content" class="textlabel input-head">Event Description</label><br>
+                          <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" required></textarea><br>   
                         </div>
                     </div>
                     <div class="line"></div>
                     
                     <div class="submitbutton">
-                            <button type="submit" name="bttn" class="btn btn-success my-2 my-sm-0" style="width: 200px; margin-bottom: 20px;">Submit</button>
+                      <button type="submit" name="bttn" class="btn btn-success my-2 my-sm-0" style="width: 200px; margin-bottom: 20px;">Submit</button>
                     </div>
                 </form>
       </div>
@@ -233,7 +234,7 @@
         "
         <script>
         alert('Event Added');
-        document.location.href = 'contentDashboard.php';
+        document.location.href = 'adminHome.php';
         </script>
         ";
 
@@ -243,7 +244,7 @@
     "
   <script>
   alert('Addition Unsuccessful');
-  document.location.href = 'contentDashboard.php';
+  document.location.href = 'adminHome.php';
   </script>
   ";
   }
