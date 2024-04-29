@@ -20,8 +20,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../assets/img/favicon.png" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/adminFavicon.png" rel="icon">
 
   <!-- Google Fonts -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
@@ -39,6 +38,8 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
   <link href="../assets/css/font.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   
   <!-- =======================================================
   * Template Name: Arsha
@@ -97,12 +98,13 @@
 
     <a href="adminHome.php" class="logo me-auto"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="adminHome.php">Content Dashboard</a></li>
-          <li><a class="nav-link scrollto active" href="addAdmin.php">Add Admin</a></li>
-          <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+      <ul>
+        <li><a class="nav-link scrollto" href="adminHome.php">Content Dashboard</a></li>
+        <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
+        <li><a class="nav-link scrollto active" href="addAdmin.php">Add Admin</a></li>
+        <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
@@ -118,6 +120,7 @@
             echo "Welcome <b>".$admin_fullname."</b>";
         ?>
       </div>
+    </section>
 
     <section class="inner-page">
       <div class="container">

@@ -70,6 +70,12 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#activities">Activities</a></li>
           <li><a class="nav-link scrollto" href="#events">Events</a></li>
+          <?php
+            if(!isset($_SESSION["user"])){
+            } else {
+              echo "<li><a class='nav-link scrollto' href='my-events.php'>My Events</a></li>";
+            }
+          ?>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <?php

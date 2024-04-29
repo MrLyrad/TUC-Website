@@ -35,6 +35,8 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
   <link href="../assets/css/font.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   
   <!-- =======================================================
   * Template Name: Arsha
@@ -167,15 +169,12 @@
 
     <a href="index.php" class="logo me-auto"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
-        </ul>
+      <ul>
+        <li><a class="nav-link scrollto active" href="adminHome.php">Content Dashboard</a></li>
+        <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
+        <li><a class="nav-link scrollto" href="addAdmin.php">Add Admin</a></li>
+        <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
+      </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -363,7 +362,7 @@
               "
               <script>
               alert('Event Updated');
-              document.location.href = 'contentDashboard.php';
+              document.location.href = 'adminHome.php';
               </script>
               ";
             }catch (Exception $e){
@@ -371,7 +370,7 @@
               "
               <script>
               alert('Image too Large');
-              document.location.href = 'contentDashboard.php';
+              document.location.href = 'adminHome.php';
               </script>
               ";
             }

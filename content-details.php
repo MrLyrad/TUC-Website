@@ -50,6 +50,30 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+#register-event {
+  font-family: "Bugaki";
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 28px 11px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px 0 0 0;
+  border-style: none;
+  color: #fff;
+  background: #e78000;
+}
+
+#register-event:hover {
+  background: #ffc95b;
+}
+  </style>
+
+
+
 </head>
 
 <body>
@@ -152,7 +176,7 @@
 
             <div>
               <form method="post">
-                   <input type="submit" name="register-event" value="Register">
+                <input id="register-event" type="submit" name="register-event" value="Register">
               </form>
               <?php 
                 if(isset($_POST["register-event"])){
@@ -183,6 +207,11 @@
                   }
                 }
               ?>
+              <script>
+                function register(){
+                  document.getElementById("register-event").click();
+                }
+              </script>
             </div>
           </div>
 
