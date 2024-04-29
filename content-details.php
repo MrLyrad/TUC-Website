@@ -105,6 +105,12 @@
           <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
           <li><a class="nav-link scrollto" href="index.php#activities">Services</a></li>
           <li><a class="nav-link  active scrollto" href="index.php#events">Events</a></li>
+          <?php
+            if(!isset($_SESSION["user"])){
+            } else {
+              echo "<li><a class='nav-link scrollto' href='my-events.php'>My Events</a></li>";
+            }
+          ?>
           <li><a class="nav-link scrollto" href="index.php#team">Team</a></li>
           <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
           <?php
@@ -181,24 +187,36 @@
               <?php 
                 if(isset($_POST["register-event"])){
                   if(isset($_SESSION["user"])){
-                    //
-                    // Add error handling to avoid duplicate event registrations
-                    //
-                    $reg_to_event = "INSERT INTO volunteer_events (volunteer_id, event_id) VALUES (?,?)";
+                    $registration_query = "SELECT * FROM volunteer_events WHERE volunteer_id = ? AND event_id = ?";
+                    $stmt = mysqli_prepare($connection, $registration_query);
 
-                    $stmt = mysqli_stmt_init($connection);  //create statement
-                    $prepare = mysqli_stmt_prepare($stmt, $reg_to_event);    //prepare SQL statement
+                    if ($stmt) {
+                        mysqli_stmt_bind_param($stmt, "ii", $volunteer_id, $id);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_store_result($stmt);
+                        $registration_rows = mysqli_stmt_num_rows($stmt);
 
-                    //Save volunteer registration
-                    if($prepare) {  //connection successful, complete the parameter details
+                        if ($registration_rows > 0) {
+                            echo "You have already registered for this event.";
+                        } else {
+                            // User is not registered, proceed to register the user
+                            $reg_to_event = "INSERT INTO volunteer_events (volunteer_id, event_id) VALUES (?,?)";
 
-                        //complete preparation statement
-                        mysqli_stmt_bind_param($stmt,"ii", $volunteer_id, $id); //Define input variables here for storing to DB
-                        mysqli_stmt_execute($stmt); //execute the statment
+                            $stmt2 = mysqli_prepare($connection, $reg_to_event);
 
-                        echo "Successfully registered"; //success confirmation
+                            if ($stmt2) {
+                                mysqli_stmt_bind_param($stmt2, "ii", $volunteer_id, $id);
+                                mysqli_stmt_execute($stmt2);
+                                echo "Registration Succesful.";
+
+                                mysqli_stmt_close($stmt2);
+                            } else {
+                                echo "Something went wrong.";
+                            }
+                        }
+                        mysqli_stmt_close($stmt);
                     } else {
-                        die("Something went wrong"); //database connection unsuccessful
+                        echo "Something went wrong.";
                     }
                   } else {
                     header("Location: authentication/login.php");
@@ -207,11 +225,6 @@
                   }
                 }
               ?>
-              <script>
-                function register(){
-                  document.getElementById("register-event").click();
-                }
-              </script>
             </div>
           </div>
 

@@ -9,6 +9,7 @@
     $user = null;
     $email = null;
     $username = null;
+    header("Location: index.php");
   }
 ?>
 <!DOCTYPE html>
