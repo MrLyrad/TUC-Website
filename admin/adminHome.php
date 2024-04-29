@@ -75,7 +75,6 @@
 
 <?php
     require_once("../db-connector.php");
-
     // Fetch data from the Orgs table
     $query = "SELECT * FROM events";
     $stmt = $pdo_obj->query($query);
@@ -141,8 +140,8 @@
       <?php foreach ($events as $event): ?>
         <tr>
           <td><?php echo $event['event_name']; ?></td>
-          <td><?php echo $event['event_date_start']; ?> - <?php echo $event['event_date_end']; ?></td>
-          <td><?php echo $event['event_time_start']; ?> - <?php echo $event['event_time_end']; ?></td>
+          <td><?php echo date("F j, Y", strtotime($event['event_date_start'])); ?> - <?php echo date("F j, Y", strtotime($event['event_date_end'])); ?></td>
+          <td><?php echo date("h:i A", strtotime($event['event_time_start'])); ?> - <?php echo date("h:i A", strtotime($event['event_time_end'])); ?></td>
           <td>
           <a href="editContent.php?id=<?php echo $event['event_id']; ?>"><button style="margin-bottom:10px;" class="btn btn-outline-primary dash-button">Edit</button></a>
           <a href="deleteContent.php?id=<?php echo $event['event_id']; ?>"><button  class="btn btn-outline-danger dash-button">Delete</button>

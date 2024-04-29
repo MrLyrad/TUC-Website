@@ -2,6 +2,7 @@
   session_start();
   if(isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
+    $volunteer_id = $user["volunteer_id"];
     $email = $user["email"];
     $username = $user["username"];
   } else {
@@ -79,9 +80,17 @@
     require_once("db-connector.php");
 
     // Fetch data from the Orgs table
-    $query = "SELECT * FROM events";
+    $query = "SELECT * FROM volunteer_events WHERE volunteer_id = $volunteer_id";
     $stmt = $pdo_obj->query($query);
-    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $my_events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $query = "SELECT event_id FROM volunteer_events WHERE volunteer_id = $volunteer_id";
+    $stmt = $pdo_obj->query($query);
+
+    $event_ids = array();
+    while ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
+    $event_ids[] = $row; // Add event_id to the array
+    }
 ?>
 
 
@@ -155,13 +164,32 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($events as $event): ?>
+      <?php 
+
+      
+
+$all_events = array(); // Store fetched events for efficient display
+
+    foreach ($event_ids as $id) {
+      $query = "SELECT * FROM events WHERE event_id = :event_id"; // Use prepared statement
+
+      $stmt = $pdo_obj->prepare($query);
+      $stmt->bindValue(':event_id', $id, PDO::PARAM_INT); // Bind ID as integer
+      $stmt->execute();
+
+      $event = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch single event
+
+      if ($event) { // Check if event was found
+        $all_events[] = $event; // Add event to array for efficient display
+      } 
+    }
+    foreach ($all_events  as $event): ?>
         <tr>
           <td><?php echo $event['event_name']; ?></td>
-          <td><?php echo $event['event_date_start']; ?> - <?php echo $event['event_date_end']; ?></td>
-          <td><?php echo $event['event_time_start']; ?> - <?php echo $event['event_time_end']; ?></td>
+          <td><?php echo date("F j, Y", strtotime($event['event_date_start'])); ?> - <?php echo date("F j, Y", strtotime($event['event_date_end'])); ?></td>
+          <td><?php echo date("h:i A", strtotime($event['event_time_start'])); ?> - <?php echo date("h:i A", strtotime($event['event_time_end'])); ?></td>
           <td>
-          <a href="deleteContent.php?id=<?php echo $event['event_id']; ?>"><button  class="btn btn-outline-danger dash-button">Remove</button>
+          <a href="userAction/unregister.php?id=<?php echo $event['event_id']; ?>"><button  class="btn btn-outline-danger dash-button">Remove</button>
           </td>
         </tr>
       <?php endforeach; ?>
@@ -267,5 +295,4 @@
 
   
 </body>
-
 </html>

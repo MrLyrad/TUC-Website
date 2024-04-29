@@ -241,6 +241,7 @@
   }
   catch (PDOException $e) 
   {
+  echo
     "
   <script>
   alert('Addition Unsuccessful');
