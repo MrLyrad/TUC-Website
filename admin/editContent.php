@@ -84,6 +84,13 @@
 }
     
   </script>
+
+  <style>
+  .image-container{
+    height: 300px; 
+    object-fit: contain;
+  }
+    </style>
 </head>
 
 <!--php codes start-->
