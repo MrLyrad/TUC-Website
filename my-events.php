@@ -104,14 +104,14 @@
     <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
         <ul>
-        <li><a class="nav-link scrollto active" href="index.php#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="index.php#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
           <li><a class="nav-link scrollto" href="index.php#activities">Activities</a></li>
           <li><a class="nav-link scrollto" href="index.php#events">Events</a></li>
           <?php
             if(!isset($_SESSION["user"])){
             } else {
-              echo "<li><a class='nav-link scrollto' href='my-events.php'>My Events</a></li>";
+              echo "<li><a class='nav-link scrollto active' href='my-events.php'>My Events</a></li>";
             }
           ?>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
