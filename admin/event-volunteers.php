@@ -51,13 +51,19 @@
   ======================================================== -->
 </head>
 
+
 <?php
     require_once("../db-connector.php");
 
-    // Fetch data from the Orgs table
-    $query = "SELECT * FROM events";
+    $event_id = $_GET['id'];
+    $event_name = $_GET['event'];
+    $query = "SELECT volunteer_id FROM volunteer_events WHERE event_id = $event_id";
     $stmt = $pdo_obj->query($query);
-    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $volunteer_ids = array();
+    while ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
+    $volunteer_ids[] = $row; // Add event_id to the array
+    }
 ?>
 
 
@@ -101,26 +107,59 @@
     <div class="container table-container">
 <br>
 <br>
+<?php
+    $all_volunteers = array(); // Store fetched events for efficient display
+    if($event_id==0){
+            $query = "SELECT * FROM volunteers"; // Use prepared statement
+      
+            $stmt = $pdo_obj->prepare($query);
+
+            // Execute the statement (no need for separate execution)
+            $stmt->execute();
+
+            // Create an empty array to store volunteers
+            $all_volunteers = [];
+
+             // Loop through each row and add it to the array
+             while ($volunteer = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $all_volunteers[] = $volunteer;
+            }
+    }else{
+        foreach ($volunteer_ids as $id) {
+            $query = "SELECT * FROM volunteers WHERE volunteer_id = :volunteer_id"; // Use prepared statement
+      
+            $stmt = $pdo_obj->prepare($query);
+            $stmt->bindValue(':volunteer_id', $id, PDO::PARAM_INT); // Bind ID as integer
+            $stmt->execute();
+      
+            $volunteer = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch single event
+      
+            if ($volunteer) { // Check if event was found
+              $all_volunteers[] = $volunteer; // Add event to array for efficient display
+            } 
+          }
+    }
+    $numVolunteers = count($all_volunteers);
+?>
   <div class="d-flex justify-content-between align-items-center">
-    <h2 style="color:#e78000">Volunteers Dashboard</h2>
-    <a class="btn btn-success" href="event-volunteers.php?id=0">All Volunteers</a>
+    <h2 style="color:#e78000"> <?php echo $event_name ?> Volunteers: <?php echo $numVolunteers ?></h2>
   </div>
   <br>
   <table style="margin-bottom:60px;" class="table">
     <thead>
       <tr>
-        <th>Event Name</th>
-        <th style="text-align: center;">Actions</th>
+        <th>Full Name</th>
+        <th style="text-align: center;">Email</th>
+        <th style="text-align: right;">Contact Number</th>
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($events as $event): ?>
+    <?php 
+    foreach ($all_volunteers  as $volunteer): ?>
         <tr>
-          <td><?php echo $event['event_name']; ?></td>
-          <td>
-          <a href="event-volunteers.php?id=<?php echo $event['event_id']; ?>&event=<?php echo $event['event_name']; ?>"><button style="margin-bottom:10px;" class="btn btn-outline-primary dash-button">Volunteers</button></a>
-
-          </td>
+          <td><?php echo $volunteer['full_name']; ?></td>
+          <td style="text-align: center;"><?php echo $volunteer['email']; ?></td>
+          <td style="text-align: right;"><?php echo $volunteer['contact']; ?></td>
         </tr>
       <?php endforeach; ?>
     </tbody>
