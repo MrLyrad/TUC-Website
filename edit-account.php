@@ -99,7 +99,7 @@
       <div class="container">
         <ol>
           <li><a href="index.php">Home</a></li>
-          <li><a href="account-details.php">Account Details</a></li>
+          <li><a href="account-details.php">Edit Account Details</a></li>
           <li>Edit Account Details</li>
         </ol>
         <h2 class="header-text-2">Account Details</h2>
