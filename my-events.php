@@ -115,11 +115,12 @@
             }
           ?>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
           <?php
             if(!isset($_SESSION["user"])){
               echo "<li><a class='login' href='authentication/login.php'>LOGIN</a></li>";
             } else {
+              echo "<li><a class='nav-link scrollto' href='account-details.php'>Account</a></li>";
               echo "<li><a class='login' href='authentication/logout.php'>LOGOUT</a></li>";
             }
           ?>

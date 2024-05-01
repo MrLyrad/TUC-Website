@@ -82,6 +82,7 @@
             if(!isset($_SESSION["user"])){
               echo "<li><a class='login' href='authentication/login.php'>LOGIN</a></li>";
             } else {
+              echo "<li><a class='nav-link scrollto' href='account-details.php'>Account</a></li>";
               echo "<li><a class='login' href='authentication/logout.php'>LOGOUT</a></li>";
             }
           ?>
