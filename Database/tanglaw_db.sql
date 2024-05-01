@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2024 at 07:42 PM
+-- Generation Time: May 01, 2024 at 07:14 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,7 +84,7 @@ CREATE TABLE `volunteers` (
   `email` varchar(255) NOT NULL,
   `username` varchar(128) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `contact` varchar(11) NOT NULL
+  `contact` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -92,13 +92,13 @@ CREATE TABLE `volunteers` (
 --
 
 INSERT INTO `volunteers` (`volunteer_id`, `full_name`, `email`, `username`, `password`, `contact`) VALUES
-(1, 'Brad Pitt', 'brad@example.com', 'root', '$2y$10$AEdfO5FP.wjJuFvAs5mwqehWi/2HtEloCLzP5R7j5pr3PHKcqfkgO', ''),
-(2, 'user', 'user@email.com', 'root', '$2y$10$ZrLbo8I9v5mT1i808.WgfOuUowB9IZGIjr3ly90xlLJ5YNjzf7mqu', ''),
-(3, 'user', 'user@example.com', 'root', '$2y$10$zBE3DEUqP.rP.avSfKVXz.DvAizMLRm51VvGbgzmvZQ4VjtcPW/LO', ''),
-(4, 'dfsfsd', '1234@email.com', 'root', '$2y$10$DvvIumy/fs/w4JHZC/2Pu..tYWscVgpyzdVb4TEMKzkC6cPEgRZw2', ''),
-(5, 'a', 'a@a.com', 'root', '$2y$10$KCuir/uxTz9oGSAWHSFzG.ZLIcybLuG7G7J/wNkDLS7Brk/iMcbq6', ''),
-(6, 'Franz', 'franz@example.com', 'Franz', '$2y$10$g/jxQlCwYJ0/HLiDmNwc8eZPe5j00bS0skRu57l11vMCGOoCTkszG', ''),
-(7, 'Clint Dela Cruz', 'clintdelacruz@mymail.mapua.edu.ph', 'Clint', '$2y$10$kuza.z6swtCRX0nxoA5dOelXjqQaE6rjbmRWMzs061nmBS/dlP42e', '');
+(1, 'Brad Pitt', 'brad@example.com', 'root', '$2y$10$AEdfO5FP.wjJuFvAs5mwqehWi/2HtEloCLzP5R7j5pr3PHKcqfkgO', NULL),
+(2, 'user', 'user@email.com', 'root', '$2y$10$ZrLbo8I9v5mT1i808.WgfOuUowB9IZGIjr3ly90xlLJ5YNjzf7mqu', NULL),
+(3, 'user', 'user@example.com', 'root', '$2y$10$zBE3DEUqP.rP.avSfKVXz.DvAizMLRm51VvGbgzmvZQ4VjtcPW/LO', NULL),
+(4, 'dfsfsd', '1234@email.com', 'root', '$2y$10$DvvIumy/fs/w4JHZC/2Pu..tYWscVgpyzdVb4TEMKzkC6cPEgRZw2', NULL),
+(5, 'a', 'a@a.com', 'root', '$2y$10$KCuir/uxTz9oGSAWHSFzG.ZLIcybLuG7G7J/wNkDLS7Brk/iMcbq6', NULL),
+(6, 'Franz', 'franz@example.com', 'Franz', '$2y$10$g/jxQlCwYJ0/HLiDmNwc8eZPe5j00bS0skRu57l11vMCGOoCTkszG', NULL),
+(7, 'Clint Dela Cruz', 'clintdelacruz@mymail.mapua.edu.ph', 'Clint', '$2y$10$kuza.z6swtCRX0nxoA5dOelXjqQaE6rjbmRWMzs061nmBS/dlP42e', NULL);
 
 -- --------------------------------------------------------
 
