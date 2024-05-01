@@ -114,7 +114,7 @@
               echo "<li><a class='nav-link scrollto active' href='my-events.php'>My Events</a></li>";
             }
           ?>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="index.php#team">Team</a></li>
           <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
           <?php
             if(!isset($_SESSION["user"])){

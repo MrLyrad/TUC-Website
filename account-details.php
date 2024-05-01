@@ -24,13 +24,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Event</title>
+  <title>Account</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
@@ -70,7 +69,7 @@
                 <li><a class="nav-link scrollto " href="index.php#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
                 <li><a class="nav-link scrollto" href="index.php#activities">Services</a></li>
-                <li><a class="nav-link  active scrollto" href="index.php#events">Events</a></li>
+                <li><a class="nav-link scrollto" href="index.php#events">Events</a></li>
                 <?php
                 if(!isset($_SESSION["user"])){
                 } else {
@@ -83,7 +82,7 @@
                 if(!isset($_SESSION["user"])){
                     echo "<li><a class='login' href='authentication/login.php'>LOGIN</a></li>";
                 } else {
-                    echo "<li><a class='nav-link scrollto' href='account-details.php'>Account</a></li>";
+                    echo "<li><a class='nav-link scrollto active' href='account-details.php'>Account</a></li>";
                     echo "<li><a class='login' href='authentication/logout.php'>LOGOUT</a></li>";
                 }
                 ?>
@@ -104,21 +103,40 @@
         <h2 class="header-text-2">Account Details</h2>
       </div>
     </section><!-- End Breadcrumbs -->
-        <a class="btn btn-success" href="edit-account.php">Change Account Details</a>
-        <?php 
-            echo   "<h1>User Name</h1>
-                    <input type='text' value='$username' readonly>
-                    <h1>Full Name</h1>
-                    <input type='text' value='$fullname' readonly>
-                    <h1>Email</h1>
-                    <input type='text' value='$email' readonly>
-                    <h1>Contact Number</h1>";
+    <section class="inner-page">
+      <div class="container">
+      <div class="line"></div>
+      <div class="container-form">
+      <?php 
+            echo   "<div class='item2'>
+                        <label for='username' class='textlabel input-head'>Username</label><br>
+                        <input type='text' value='$username' class='form-control' readonly>
+                    </div>
+                    <div class='item1'>
+                        <label for='fullname' class='textlabel input-head'>Full Name</label><br>
+                        <input type='text' value='$fullname' class='form-control' readonly>
+                    </div>
+                    <div class='item3'>
+                        <label for='email' class='textlabel input-head'>Email</label><br>
+                        <input type='text' value='$email' class='form-control' readonly>
+                    </div>
+                    <div class='item4'>
+                        <label for='contact' class='textlabel input-head'>Contact Number</label><br>";
                     if(is_null($contact)){
-                        echo "<input type='text' value='No Contact Number' readonly>";
+                        echo "<input type='text' value='No Contact Number' class='form-control' readonly>"."</div>";
                     } else {
-                        echo "<input type='text' value='$contact' readonly>";
+                        echo "<input type='text' value='$contact' class='form-control' readonly>"."</div>";
                     }
+                    
         ?>
+      </div>
+
+    <div class="line"></div>
+    </section>
+    <center>
+        <a class="btn btn-success" href="edit-account.php">Change Account Details</a>
+    </center>
+
 
     </main><!-- End #main -->
 

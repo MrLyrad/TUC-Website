@@ -21,7 +21,6 @@
 
   <!-- Favicons -->
   <link href="../assets/img/adminFavicon.png" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
@@ -39,6 +38,7 @@
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
   <link href="../assets/css/font.css" rel="stylesheet">
+  
   
   <!-- =======================================================
   * Template Name: Arsha
@@ -81,11 +81,12 @@
 
     <a href="adminHome.php" class="logo me-auto"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="adminHome.php">Content Dashboard</a></li>
-          <li><a class="nav-link scrollto" href="addAdmin.php">Add Admin</a></li>
-          <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
-        </ul>
+      <ul>
+        <li><a class="nav-link scrollto active" href="adminHome.php">Content Dashboard</a></li>
+        <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
+        <li><a class="nav-link scrollto" href="addAdmin.php">Add Admin</a></li>
+        <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
+      </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
