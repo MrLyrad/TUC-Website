@@ -68,7 +68,7 @@
             <ul>
                 <li><a class="nav-link scrollto " href="index.php#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
-                <li><a class="nav-link scrollto" href="index.php#activities">Services</a></li>
+                <li><a class="nav-link scrollto" href="index.php#activities">Activities</a></li>
                 <li><a class="nav-link scrollto" href="index.php#events">Events</a></li>
                 <?php
                 if(!isset($_SESSION["user"])){
