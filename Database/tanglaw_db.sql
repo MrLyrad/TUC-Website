@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2024 at 07:14 AM
+-- Generation Time: May 01, 2024 at 02:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -92,12 +92,10 @@ CREATE TABLE `volunteers` (
 --
 
 INSERT INTO `volunteers` (`volunteer_id`, `full_name`, `email`, `username`, `password`, `contact`) VALUES
-(1, 'Brad Pitt', 'brad@example.com', 'root', '$2y$10$AEdfO5FP.wjJuFvAs5mwqehWi/2HtEloCLzP5R7j5pr3PHKcqfkgO', NULL),
-(2, 'user', 'user@email.com', 'root', '$2y$10$ZrLbo8I9v5mT1i808.WgfOuUowB9IZGIjr3ly90xlLJ5YNjzf7mqu', NULL),
-(3, 'user', 'user@example.com', 'root', '$2y$10$zBE3DEUqP.rP.avSfKVXz.DvAizMLRm51VvGbgzmvZQ4VjtcPW/LO', NULL),
-(4, 'dfsfsd', '1234@email.com', 'root', '$2y$10$DvvIumy/fs/w4JHZC/2Pu..tYWscVgpyzdVb4TEMKzkC6cPEgRZw2', NULL),
-(5, 'a', 'a@a.com', 'root', '$2y$10$KCuir/uxTz9oGSAWHSFzG.ZLIcybLuG7G7J/wNkDLS7Brk/iMcbq6', NULL),
-(6, 'Franz', 'franz@example.com', 'Franz', '$2y$10$g/jxQlCwYJ0/HLiDmNwc8eZPe5j00bS0skRu57l11vMCGOoCTkszG', NULL),
+(1, 'Brad Pitt', 'brad@example.com', 'Brad', '$2y$10$AEdfO5FP.wjJuFvAs5mwqehWi/2HtEloCLzP5R7j5pr3PHKcqfkgO', '52940573810'),
+(4, 'Mia Khalifa', 'mkhalifa@ph.com', 'Mia', '$2y$10$DvvIumy/fs/w4JHZC/2Pu..tYWscVgpyzdVb4TEMKzkC6cPEgRZw2', '69696969696'),
+(5, 'Brendon Urie', 'brendon@urie.com', 'Brendon', '$2y$10$KCuir/uxTz9oGSAWHSFzG.ZLIcybLuG7G7J/wNkDLS7Brk/iMcbq6', '29402749230'),
+(6, 'Franz Gabriel Illorin Eleccion', 'franz@example.com', 'Franz', '$2y$10$g/jxQlCwYJ0/HLiDmNwc8eZPe5j00bS0skRu57l11vMCGOoCTkszG', '35276845321'),
 (7, 'Clint Dela Cruz', 'clintdelacruz@mymail.mapua.edu.ph', 'Clint', '$2y$10$kuza.z6swtCRX0nxoA5dOelXjqQaE6rjbmRWMzs061nmBS/dlP42e', NULL);
 
 -- --------------------------------------------------------
@@ -118,6 +116,7 @@ CREATE TABLE `volunteer_events` (
 INSERT INTO `volunteer_events` (`volunteer_id`, `event_id`) VALUES
 (5, 1),
 (6, 2),
+(6, 3),
 (7, 3);
 
 --

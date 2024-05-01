@@ -3,17 +3,18 @@
   if(isset($_SESSION["user"])) {
     $user = $_SESSION["user"];
     $volunteer_id = $user["volunteer_id"];
-    $email = $user["email"];
     $username = $user["username"];
-    $fullname = $user["full_name"];
+    $full_name = $user["full_name"];
+    $email = $user["email"];
     $contact = $user["contact"];
   } else {
-    $user = null;
-    $email = null;
+    $volunteer_id = null;
     $username = null;
     $full_name = null;
+    $email = null;
     $contact = null;
     header("Location: index.php");
+    die();
   }
 ?>
 
@@ -108,36 +109,109 @@
       <div class="container">
       <div class="line"></div>
       <div class="container-form">
-      <?php 
-            echo   "<div class='item2'>
-                        <label for='username' class='textlabel input-head'>Username</label><br>
-                        <input type='text' value='$username' class='form-control' required>
-                    </div>
-                    <div class='item1'>
-                        <label for='fullname' class='textlabel input-head'>Full Name</label><br>
-                        <input type='text' value='$fullname' class='form-control' required>
-                    </div>
-                    <div class='item3'>
-                        <label for='email' class='textlabel input-head'>Email</label><br>
-                        <input type='text' value='$email' class='form-control' required>
-                    </div>
-                    <div class='item4'>
-                        <label for='contact' class='textlabel input-head'>Contact Number</label><br>";
-                    if(is_null($contact)){
-                        echo "<input type='text' value='' class='form-control'>"."</div>";
-                    } else {
-                        echo "<input type='text' value='$contact' class='form-control'>"."</div>";
+        <?php 
+            ob_start();
+            echo   "<form method='post'>
+                        <div class='item1'>
+                            <label for='username' class='textlabel input-head'>New Username</label><br>
+                            <input type='text' name='new_username' value='$username' class='form-control' required>
+                        </div>
+                        <div class='item2'>
+                            <label for='fullname' class='textlabel input-head'>New Full Name</label><br>
+                            <input type='text' name='new_fullname' value='$full_name' class='form-control' required>
+                        </div>
+                        <div class='item3'>
+                            <label for='email' class='textlabel input-head'>New Email</label><br>
+                            <input type='email' name='new_email' value='$email' class='form-control' required>
+                        </div>
+                        <div class='item4'>
+                            <label for='contact' class='textlabel input-head'>New Contact Number</label><br>
+                            <input type='tel' name='new_cnum' value='$contact' pattern='\d{11}' class='form-control'>
+                        </div>
+                        <input type='submit' name='confirm_changes' value='Confirm Changes'>
+                    </form>";
+
+            if(isset($_POST["confirm_changes"])){
+                $new_username = $_POST['new_username'];
+                $new_fullname = $_POST['new_fullname'];
+                $new_email = $_POST['new_email'];
+                $new_contact = $_POST['new_cnum'];
+
+                //store errors
+                $errs = array();
+
+                //check if email format valid
+                if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    array_push($errs,"Enter a valid email");
+                }
+
+                require_once("db-connector.php");    //connector file
+                // Check for duplicate email and username
+                $email_query = $connection->prepare("SELECT volunteer_id FROM volunteers WHERE email = ?");
+                $email_query->bind_param("s", $new_email);
+                $email_query->execute();
+                $email_query_result = $email_query->get_result();
+                $email_query_row = $email_query_result->fetch_assoc();
+                $existing_email_id = $email_query_row ? $email_query_row['volunteer_id'] : null;
+                $email_query->close();
+
+                $username_query = $connection->prepare("SELECT volunteer_id FROM volunteers WHERE username = ?");
+                $username_query->bind_param("s", $new_username);
+                $username_query->execute();
+                $username_query_result = $username_query->get_result();
+                $username_query_row = $username_query_result->fetch_assoc();
+                $existing_username_id = $username_query_row ? $username_query_row['volunteer_id'] : null;
+                $username_query->close();
+
+                // Check if email and username are already used by another volunteer
+                if ($existing_email_id !== null && $existing_email_id != $volunteer_id) {
+                    array_push($errs,"Email already exists!");
+                }
+
+                if ($existing_username_id !== null && $existing_username_id != $volunteer_id) {
+                    array_push($errs,"Username already exists!");
+                }
+
+                if($contact == 0 OR $contact == null){
+                    $contact = null;
+                }
+
+                //checks error counter
+                if(count($errs) > 0) {  //errors are detected
+                    foreach($errs as $err) {
+                        //!!! please provide class name for customizing div !!!
+                        echo "<div>$err</div>";
                     }
+                } else {    //input requirements fulfilled, initiate connection
+                    //SQL statment for insertion of inputs to DB
+                    $sql = "UPDATE volunteers SET full_name = ?, email = ?, username = ?, contact = ? WHERE volunteer_id = ?"; //Values are abstracted to prevent SQL injection
+
+                    $stmt = mysqli_stmt_init($connection);  //create statement
+                    $prepare = mysqli_stmt_prepare($stmt, $sql);    //prepare SQL statement
+
+                    //Save volunteer registration
+                    if ($prepare) {  
+                        // Complete the preparation statement and execute it
+                        mysqli_stmt_bind_param($stmt, "ssssi", $new_fullname, $new_email, $new_username, $new_contact, $volunteer_id);
+                        mysqli_stmt_execute($stmt);
                     
-        ?>
+                        // Fetch updated volunteer details
+                        $sql = "SELECT * FROM volunteers WHERE volunteer_id = $volunteer_id";
+                        $result = mysqli_query($connection, $sql);
+                        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                        $_SESSION["user"] = $user;
+                    
+                        // Redirect the user to the account-details.php page
+                        header("Location: account-details.php");
+                        exit(); // Make sure to exit the script
+                    } else {
+                        die("Something went wrong"); //database connection unsuccessful
+                    }
+                }
+            }
+            ob_end_flush();
+        ?>      
       </div>
-
-    <div class="line"></div>
-    </section>
-    <center>
-        <a class="btn btn-success" href="">Save Changes</a>
-    </center>
-
 
     </main><!-- End #main -->
 
