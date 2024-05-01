@@ -102,7 +102,7 @@
           <li><a href="account-details.php">Edit Account Details</a></li>
           <li>Edit Account Details</li>
         </ol>
-        <h2 class="header-text-2">Account Details</h2>
+        <h2 class="header-text-2">Edit Account Details</h2>
       </div>
     </section><!-- End Breadcrumbs -->
     <section class="inner-page">
