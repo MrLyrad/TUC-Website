@@ -1,14 +1,20 @@
 <?php
-    session_start();
-    if (!isset($_SESSION["admin"])) {
-        header("Location: ../authentication/adminLogin.php");
-    }  else {
-        $admin = $_SESSION["admin"];
-        $admin_fullname = $admin["admin_fullname"];
-        $admin_email = $admin["admin_email"];
-        $admin_role = $admin["admin_role"];
-    }
+  session_start();
+  if(isset($_SESSION["admin"])) {
+    $admin = $_SESSION["admin"];
+    $admin_id = $admin["admin_id"];
+    $admin_email = $admin["admin_email"];
+    $admin_fullname = $admin["admin_fullname"];
+    $admin_role = $admin["admin_role"];
+  } else {
+    $admin_id = null;
+    $admin_email = null;
+    $admin_fullname = null;
+    $admin_role = null;
+    header("Location: ../authentication/adminLogin.php");
+  }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,13 +22,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Volunteers</title>
+  <title>Add Admin</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="../assets/img/adminFavicon.png" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
@@ -41,8 +46,8 @@
   <link href="../assets/css/style.css" rel="stylesheet">
   <link href="../assets/css/font.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  
 
+  
   <!-- =======================================================
   * Template Name: Arsha
   * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
@@ -50,22 +55,46 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-</head>
 
+  <script>
+    function onFileSelected(event) {
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
 
-<?php
-    require_once("../db-connector.php");
+    var imgtag = document.getElementById("myimage");
+    imgtag.title = selectedFile.name;
 
-    $event_id = $_GET['id'];
-    $event_name = $_GET['event'];
-    $query = "SELECT volunteer_id FROM volunteer_events WHERE event_id = $event_id";
-    $stmt = $pdo_obj->query($query);
+    reader.onload = function(event) {
+        imgtag.src = event.target.result;
+    };
 
-    $volunteer_ids = array();
-    while ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
-    $volunteer_ids[] = $row; // Add event_id to the array
+    reader.readAsDataURL(selectedFile);
+    document.getElementById('myimage').style.display = ""
     }
-?>
+
+    function resetImage() {
+    document.getElementById('event_image').value = '';
+    document.getElementById('myimage').style.display = "none"; 
+    }
+  </script>
+   <style>
+    .container-form {
+          grid-template-areas:
+            'name'
+            'image'
+            'location'
+            'contact'
+            'person'
+            'startdate'
+            'enddate'
+            'timestart'
+            'timeend'
+            'instructions'
+            'description';
+          grid-template-columns: 1fr;  /* Single column for all items */
+        }
+    </style>
+</head>
 
 
 <body>
@@ -99,90 +128,49 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-      <ol>
-        <li><a href="userDashboard.php">Volunteers</a></li>
-        <li>All Volunteers</li>
-      </ol>
-        <h2 class="header-text-2">Volunteers</h2>
+        <h2 class="header-text-2">Content Dashboard</h2>
         <?php
             echo "Welcome <b>".$admin_fullname."</b>";
         ?>
       </div>
-    </section><!-- End Breadcrumbs -->
+    </section>
 
     <section class="inner-page">
       <div class="container">
       <div class="line"></div>
-
-    <!-- Table for Events -->
-    <div class="container table-container">
-<br>
-<br>
-<?php
-    $all_volunteers = array(); // Store fetched events for efficient display
-    if($event_id==0){
-            $query = "SELECT * FROM volunteers"; // Use prepared statement
-      
-            $stmt = $pdo_obj->prepare($query);
-
-            // Execute the statement (no need for separate execution)
-            $stmt->execute();
-
-            // Create an empty array to store volunteers
-            $all_volunteers = [];
-
-             // Loop through each row and add it to the array
-             while ($volunteer = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $all_volunteers[] = $volunteer;
+      <div class="container-form">
+      <?php 
+            echo   "<div class='item1'>
+                        <label for='fullname' class='textlabel input-head'>Full Name</label><br>
+                        <input type='text' name='fullname' value='$admin_fullname' class='form-control' readonly>
+                    </div>
+                    <div class='item2'>
+                        <label for='email' class='textlabel input-head'>Email</label><br>
+                        <input type='text' name='email' value='$admin_email' class='form-control' readonly>
+                    </div>
+                    <div class='item3'>
+                        <label for='role' class='textlabel input-head'>Role</label><br>
+                        ";
+            
+            $role = "";                        
+            if ($admin_role == "s_admin"){
+                $role = "Super Admin";
+            } else {
+                $role = "Admin";
             }
-    }else{
-        foreach ($volunteer_ids as $id) {
-            $query = "SELECT * FROM volunteers WHERE volunteer_id = :volunteer_id"; // Use prepared statement
-      
-            $stmt = $pdo_obj->prepare($query);
-            $stmt->bindValue(':volunteer_id', $id, PDO::PARAM_INT); // Bind ID as integer
-            $stmt->execute();
-      
-            $volunteer = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch single event
-      
-            if ($volunteer) { // Check if event was found
-              $all_volunteers[] = $volunteer; // Add event to array for efficient display
-            } 
-          }
-    }
-    $numVolunteers = count($all_volunteers);
-?>
-  <div class="d-flex justify-content-between align-items-center">
-    <h2 style="color:#e78000"> <?php echo $event_name ?> Volunteers: <?php echo $numVolunteers ?></h2>
-  </div>
-  <br>
-  <table style="margin-bottom:60px;" class="table">
-    <thead>
-      <tr>
-        <th>Full Name</th>
-        <th style="text-align: center;">Email</th>
-        <th style="text-align: right;">Contact Number</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php 
-    foreach ($all_volunteers  as $volunteer): ?>
-        <tr>
-          <td><?php echo $volunteer['full_name']; ?></td>
-          <td style="text-align: center;"><?php echo $volunteer['email']; ?></td>
-          <td style="text-align: right;"><?php echo $volunteer['contact']; ?></td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-</div>
-
+                        
+            echo "<input type='text' name='role' value='$role' class='form-control' readonly>";
+        ?>
+      </div>
 
       <div class="line"></div>
-      </div>
+      <center>
+        <a class="btn btn-success" href="editAdminProfile.php">Change Account Details</a>
+      </center>
     </section>
 
-  </main><!-- End #main -->
+
+    </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

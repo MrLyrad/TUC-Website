@@ -5,7 +5,7 @@
     }  else {
         $admin = $_SESSION["admin"];
         $admin_fullname = $admin["admin_fullname"];
-        $admin_email = $admin["admin_email"];
+        $admin_role = $admin["admin_role"];
     }
 ?>
 <!DOCTYPE html>
@@ -93,8 +93,14 @@
       <ul>
         <li><a class="nav-link scrollto active" href="adminHome.php">Content Dashboard</a></li>
         <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
-        <li><a class="nav-link scrollto" href="addAdmin.php">Add Admin</a></li>
-        <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
+        <?php
+          if($admin_role == "s_admin"){
+            echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
+          }
+        ?>
+        <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
+        <li><a class="nav-link scrollto" href="adminProfile.php">Account</a></li>
+        <li><a class="nav-link scrollto" href="../authentication/adminLogout.php">Log Out</a></li>
       </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

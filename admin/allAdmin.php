@@ -3,10 +3,11 @@
     if (!isset($_SESSION["admin"])) {
         header("Location: ../authentication/adminLogin.php");
     }  else {
-        $admin = $_SESSION["admin"];
-        $admin_fullname = $admin["admin_fullname"];
-        $admin_email = $admin["admin_email"];
-        $admin_role = $admin["admin_role"];
+        $this_admin = $_SESSION["admin"];
+        $admin_fullname = $this_admin["admin_fullname"];
+        $admin_email = $this_admin["admin_email"];
+        $admin_role = $this_admin["admin_role"];
+        $this_id = $this_admin["admin_id"];
     }
 ?>
 <!DOCTYPE html>
@@ -52,22 +53,6 @@
   ======================================================== -->
 </head>
 
-
-<?php
-    require_once("../db-connector.php");
-
-    $event_id = $_GET['id'];
-    $event_name = $_GET['event'];
-    $query = "SELECT volunteer_id FROM volunteer_events WHERE event_id = $event_id";
-    $stmt = $pdo_obj->query($query);
-
-    $volunteer_ids = array();
-    while ($row = $stmt->fetch(PDO::FETCH_COLUMN)) {
-    $volunteer_ids[] = $row; // Add event_id to the array
-    }
-?>
-
-
 <body>
 
   <!-- ======= Header ======= -->
@@ -100,10 +85,10 @@
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
       <ol>
-        <li><a href="userDashboard.php">Volunteers</a></li>
-        <li>All Volunteers</li>
+        <li><a href="userDashboard.php">Admins</a></li>
+        <li>All Admin</li>
       </ol>
-        <h2 class="header-text-2">Volunteers</h2>
+        <h2 class="header-text-2">Admins</h2>
         <?php
             echo "Welcome <b>".$admin_fullname."</b>";
         ?>
@@ -119,41 +104,29 @@
 <br>
 <br>
 <?php
-    $all_volunteers = array(); // Store fetched events for efficient display
-    if($event_id==0){
-            $query = "SELECT * FROM volunteers"; // Use prepared statement
-      
-            $stmt = $pdo_obj->prepare($query);
+    require_once("../db-connector.php");
 
-            // Execute the statement (no need for separate execution)
-            $stmt->execute();
+    $all_admin = array(); // Store fetched events for efficient display
+ 
+    $query = "SELECT * FROM admins"; // Use prepared statement
 
-            // Create an empty array to store volunteers
-            $all_volunteers = [];
+    $stmt = $pdo_obj->prepare($query);
 
-             // Loop through each row and add it to the array
-             while ($volunteer = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $all_volunteers[] = $volunteer;
-            }
-    }else{
-        foreach ($volunteer_ids as $id) {
-            $query = "SELECT * FROM volunteers WHERE volunteer_id = :volunteer_id"; // Use prepared statement
-      
-            $stmt = $pdo_obj->prepare($query);
-            $stmt->bindValue(':volunteer_id', $id, PDO::PARAM_INT); // Bind ID as integer
-            $stmt->execute();
-      
-            $volunteer = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch single event
-      
-            if ($volunteer) { // Check if event was found
-              $all_volunteers[] = $volunteer; // Add event to array for efficient display
-            } 
-          }
+    // Execute the statement (no need for separate execution)
+    $stmt->execute();
+
+    // Create an empty array to store admins
+    $all_admin = [];
+
+        // Loop through each row and add it to the array
+    while ($admin = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $all_admin[] = $admin;
     }
-    $numVolunteers = count($all_volunteers);
+    
+    $numAdmins = count($all_admin);
 ?>
   <div class="d-flex justify-content-between align-items-center">
-    <h2 style="color:#e78000"> <?php echo $event_name ?> Volunteers: <?php echo $numVolunteers ?></h2>
+    <h2 style="color:#e78000">Admins: <?php echo $numAdmins ?></h2>
   </div>
   <br>
   <table style="margin-bottom:60px;" class="table">
@@ -161,18 +134,46 @@
       <tr>
         <th>Full Name</th>
         <th style="text-align: center;">Email</th>
-        <th style="text-align: right;">Contact Number</th>
+        <th style="text-align: center;">Role</th>
+        <?php 
+            if($admin_role == "s_admin"){
+                echo   "<th style='text-align: center;'>Change Role</th>
+                        <th style='text-align: center;'>Remove User</th>";
+            }
+        ?>
       </tr>
     </thead>
     <tbody>
     <?php 
-    foreach ($all_volunteers  as $volunteer): ?>
+    foreach ($all_admin as $admin): ?>
         <tr>
-          <td><?php echo $volunteer['full_name']; ?></td>
-          <td style="text-align: center;"><?php echo $volunteer['email']; ?></td>
-          <td style="text-align: right;"><?php echo $volunteer['contact']; ?></td>
+            <td><?php echo $admin['admin_fullname']; ?></td>
+            <td style="text-align: center;"><?php echo $admin['admin_email']; ?></td>
+            <td style="text-align: center;">
+                <?php 
+                    if ($admin['admin_role'] == "s_admin") {
+                        echo "Super Admin";
+                    } else {
+                        echo "Admin";
+                    }
+                ?>
+            </td>
+            <?php
+                if ($admin_role == "s_admin" && $this_id != $admin["admin_id"]) {
+                    echo "<td style='text-align: right;'>";
+                    // Check the role and generate appropriate button with URL
+                    if ($admin['admin_role'] == "s_admin") {
+                        echo "<a href='updateRole.php?id=" . $admin['admin_id'] . "'><button class='btn btn-outline-primary dash-button'>To Admin</button></a>";
+                    } else {
+                        echo "<a href='updateRole.php?id=" . $admin['admin_id'] . "'><button class='btn btn-outline-primary dash-button'>To Super Admin</button></a>";
+                    }
+                    // Button to remove admin
+                    echo "<td><a href='deleteAdmin.php?id=" . $admin['admin_id'] . "'><button class='btn btn-outline-danger dash-button'>Remove</button></a></td>";
+                    echo "</td>";
+                }
+            ?>
         </tr>
-      <?php endforeach; ?>
+    <?php endforeach; ?>
     </tbody>
   </table>
 </div>

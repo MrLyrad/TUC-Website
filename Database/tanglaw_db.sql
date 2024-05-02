@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2024 at 02:15 PM
+-- Generation Time: May 03, 2024 at 01:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,15 +31,18 @@ CREATE TABLE `admins` (
   `admin_id` int(11) NOT NULL,
   `admin_fullname` varchar(128) NOT NULL,
   `admin_email` varchar(255) NOT NULL,
-  `admin_password` varchar(255) NOT NULL
+  `admin_password` varchar(255) NOT NULL,
+  `admin_role` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`admin_id`, `admin_fullname`, `admin_email`, `admin_password`) VALUES
-(1, 'Admin', 'admin@email.com', '$2y$10$JEwG0.7Mfrl8cU3EA3JyXeB.iTR1X2Gj5KCIilSpJvOy3XAGbfdZC');
+INSERT INTO `admins` (`admin_id`, `admin_fullname`, `admin_email`, `admin_password`, `admin_role`) VALUES
+(3, 'The Admin', 'admin@super.com', '$2y$10$5xY2LDDaMQRwu8H.octpg.OzTTtAOXNqvqswGnOT2mOceL4Cmy.Iy', 's_admin'),
+(4, 'Daryl Josh', 'daryl@josh.com', '$2y$10$9n8N0rQsRvVakXfRjIMk9u5dTj7fAN1un0UNjFx3/vLFXQQqtkd4S', 's_admin'),
+(6, 'Franz Gabriel Illorin Eleccion', 'franz@admin.com', '$2y$10$opeS749lL06lkqon4yqyx.IK8FtPBrssNYqFYViUcnfQUZNHzNHIW', 'n_admin');
 
 -- --------------------------------------------------------
 
@@ -75,6 +78,22 @@ INSERT INTO `events` (`event_image`, `event_name`, `event_location`, `event_cont
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `org_info`
+--
+
+CREATE TABLE `org_info` (
+  `org_addressnum` varchar(255) NOT NULL,
+  `org_street` varchar(128) NOT NULL,
+  `org_brgy_mncplty` varchar(128) NOT NULL,
+  `org_city` varchar(128) NOT NULL,
+  `org_country` varchar(128) NOT NULL,
+  `org_contactnum` varchar(11) NOT NULL,
+  `org_email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `volunteers`
 --
 
@@ -96,7 +115,9 @@ INSERT INTO `volunteers` (`volunteer_id`, `full_name`, `email`, `username`, `pas
 (4, 'Mia Khalifa', 'mkhalifa@ph.com', 'Mia', '$2y$10$DvvIumy/fs/w4JHZC/2Pu..tYWscVgpyzdVb4TEMKzkC6cPEgRZw2', '69696969696'),
 (5, 'Brendon Urie', 'brendon@urie.com', 'Brendon', '$2y$10$KCuir/uxTz9oGSAWHSFzG.ZLIcybLuG7G7J/wNkDLS7Brk/iMcbq6', '29402749230'),
 (6, 'Franz Gabriel Illorin Eleccion', 'franz@example.com', 'Franz', '$2y$10$g/jxQlCwYJ0/HLiDmNwc8eZPe5j00bS0skRu57l11vMCGOoCTkszG', '35276845321'),
-(7, 'Clint Dela Cruz', 'clintdelacruz@mymail.mapua.edu.ph', 'Clint', '$2y$10$kuza.z6swtCRX0nxoA5dOelXjqQaE6rjbmRWMzs061nmBS/dlP42e', NULL);
+(7, 'Clint Dela Cruz', 'clintdelacruz@mymail.mapua.edu.ph', 'Clint', '$2y$10$kuza.z6swtCRX0nxoA5dOelXjqQaE6rjbmRWMzs061nmBS/dlP42e', NULL),
+(8, 'Franz Gabriel Illorin Eleccion', 'franzeleccion@gmail.com', 'Franz Gabriel', '$2y$10$.PJ9hIDuw/fS5ec329rsnOrqg0AsKvGUiEVVoKeMyL4zlUotqSuYm', '09760206383'),
+(9, '2439', '2439@mail.com', '24.39', '$2y$10$AWSR73JISteVCGjg3mgDBu.SbFp7tulUnExq3Y1EGhquc6Z.8BcnG', NULL);
 
 -- --------------------------------------------------------
 
@@ -156,7 +177,7 @@ ALTER TABLE `volunteer_events`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -168,7 +189,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `volunteers`
 --
 ALTER TABLE `volunteers`
-  MODIFY `volunteer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `volunteer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

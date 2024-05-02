@@ -129,7 +129,7 @@
     <section id="clients" class="clients section-bg">
       <div class="container">
 
-        <div class="row justify-content-center" data-aos="zoom-in" style="object-align:center;">
+        <div class="row justify-content-center" data-aos="zoom-in">
 
           <div class="col-lg-2 col-md-8 col-3 d-flex align-items-center justify-content-center">
             <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">

@@ -1,11 +1,15 @@
 <?php
     session_start();
-    if (!isset($_SESSION["admin"])) {
-        header("Location: ../authentication/adminLogin.php");
-    }  else {
+    if (isset($_SESSION["admin"])) {
         $admin = $_SESSION["admin"];
         $admin_fullname = $admin["admin_fullname"];
-        $admin_email = $admin["admin_email"];
+        $admin_role = $admin["admin_role"];
+
+        if($admin_role == "n_admin"){
+          header("Location: adminHome.php");
+        }
+    } else {
+      header("Location: ../authentication/adminLogin.php");
     }
 ?>
 <!DOCTYPE html>
@@ -99,12 +103,18 @@
     <a href="adminHome.php" class="logo me-auto"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto" href="adminHome.php">Content Dashboard</a></li>
+        <li><a class="nav-link scrollto active" href="adminHome.php">Content Dashboard</a></li>
         <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
-        <li><a class="nav-link scrollto active" href="addAdmin.php">Add Admin</a></li>
-        <li><a class="nav-link scrollto" href="../authentication/logout.php">Log Out</a></li>
+        <?php
+          if($admin_role == "s_admin"){
+            echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
+          }
+        ?>
+        <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
+        <li><a class="nav-link scrollto" href="adminProfile.php">Account</a></li>
+        <li><a class="nav-link scrollto" href="../authentication/adminLogout.php">Log Out</a></li>
       </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
+        <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
     </div>
@@ -127,14 +137,21 @@
       <div class="line"></div>
       <form method="POST" enctype="multipart/form-data">
 
-      <?php
+              <?php
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+{}|:"<>?[];,./-=';
+                $generated_password = '';
+                for ($i = 0; $i < 12; $i++) {
+                  $randomIndex = random_int(0, strlen($characters) - 1);
+                  $generated_password .= $characters[$randomIndex];
+                }
+
                 //Run once form is submitted
                 if (isset($_POST["register"])) {
                     //initiate input variables
                     $email = $_POST["admin_email"];
                     $fullname = $_POST["admin_fullname"];
+                    $role = $_POST["role"];
                     $password = $_POST["admin_password"];
-                    $password_confirmation = $_POST["password_rep"];
                     
                     //store errors
                     $errs = array();
@@ -143,8 +160,12 @@
                     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
                     //check if complete inputs
-                    if(empty($fullname) OR empty($email) OR empty($password)) {
+                    if(empty($fullname) OR empty($email)) {
                         array_push( $errs,"All fields are required");
+                    }
+
+                    if(empty($role) OR $role==""){
+                        array_push($errs, "Please provide an admin role");
                     }
 
                     //check if email format valid
@@ -152,25 +173,20 @@
                         array_push( $errs,"Enter a valid email");
                     }
 
-                    //check if passwords match
-                    if($password!=$password_confirmation){
-                        array_push( $errs,"Password does not match");
-                    }
-
                     require_once("../db-connector.php");    //connector file
                     
                     $email_query = "SELECT * FROM admins WHERE admin_email = '$email'";
-                    $username_query = "SELECT * FROM admins WHERE admin_fullname = '$fullname'";
+                    $fullname_query = "SELECT * FROM admins WHERE admin_fullname = '$fullname'";
                     $email_data = mysqli_query($connection, $email_query);
-                    $username_data = mysqli_query($connection, $username_query);
+                    $fullname_data = mysqli_query($connection, $fullname_query);
                     $email_rows = mysqli_num_rows($email_data);
-                    $username_rows = mysqli_num_rows($username_data);
+                    $fullname_rows = mysqli_num_rows($fullname_data);
 
                     if ($email_rows>0){
                         array_push($errs, "Email already exists!");
                     }
 
-                    if ($username_rows>0){
+                    if ($fullname_rows>0){
                         array_push($errs, "Admin already exists!");
                     }
 
@@ -183,7 +199,7 @@
                         }
                     } else {    //input requirements fulfilled, initiate connection
                         //SQL statment for insertion of inputs to DB
-                        $sql = "INSERT INTO admins (admin_fullname, admin_email, admin_password) VALUES (?,?,?)"; //Values are abstracted to prevent SQL injection
+                        $sql = "INSERT INTO admins (admin_fullname, admin_email, admin_password, admin_role) VALUES (?,?,?,?)"; //Values are abstracted to prevent SQL injection
 
                         $stmt = mysqli_stmt_init($connection);  //create statement
                         $prepare = mysqli_stmt_prepare($stmt, $sql);    //prepare SQL statement
@@ -192,7 +208,7 @@
                         if($prepare) {  //connection successful, complete the parameter details
 
                             //complete preparation statement
-                            mysqli_stmt_bind_param($stmt,"sss", $fullname, $email, $password_hash); //Define input variables here for storing to DB
+                            mysqli_stmt_bind_param($stmt,"ssss", $fullname, $email, $password_hash, $role); //Define input variables here for storing to DB
                             mysqli_stmt_execute($stmt); //execute the statment
                             //success confirmation
                             echo 
@@ -207,7 +223,8 @@
                         }
                     }
                 }
-            ?>
+              ?>
+
             <div class="container-form">
                 <!-- Full Name -->
                 <div class="item2">
@@ -215,6 +232,7 @@
                     <input type="text" id="admin_fullname" name="admin_fullname" class="form-control" required>
                 </div>
 
+                <!-- Email -->
                 <div class="item1">
                     <label for="admin_email" class="textlabel input-head">Email</label><br>
                     <input type="email" id="admin_email" name="admin_email" class="form-control" required>
@@ -223,13 +241,17 @@
                 <!-- Password -->
                 <div class="item3">
                     <label for="admin_password" class="textlabel input-head">Password</label><br>
-                    <input type="password" id="admin_password" name="admin_password" class="form-control" required>
+                    <input type="text" id="admin_password" name="admin_password" value="<?php echo $generated_password; ?>" class="form-control" readonly>
                 </div>
 
-                <!-- Confirm Password -->
+                <!-- Priviledge -->
                 <div class="item4">
-                    <label for="password_rep" class="textlabel input-head">Confirm Password</label><br>
-                    <input type="password" id="password_rep" name="password_rep" class="form-control" required>
+                    <label for="role" class="textlabel input-head">Set Role</label><br>
+                    <select id="role" name="role" class="form-control" value="">
+                      <option value="" selected disabled hidden>---   Select a Role   ---</option>
+                      <option value="n_admin">Normal Admin</option>
+								      <option value="s_admin">Super Admin</option>
+                    </select>
                 </div>
             </div>
             <div class="line"></div>
