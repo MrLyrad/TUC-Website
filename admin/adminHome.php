@@ -48,29 +48,12 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
   <script>
-    function onFileSelected(event) {
-    var selectedFile = event.target.files[0];
-    var reader = new FileReader();
-
-    var imgtag = document.getElementById("myimage");
-    imgtag.title = selectedFile.name;
-
-    reader.onload = function(event) {
-        imgtag.src = event.target.result;
+    document.getElementById("deleteLink").onclick = function() {
+      return confirm("Are you sure you want to delete this event?");
     };
-
-    reader.readAsDataURL(selectedFile);
-    document.getElementById('myimage').style.display = ""
-    }
-
-    function resetImage() {
-    document.getElementById('event_image').value = null;
-    document.getElementById('myimage').style.display = "none"; 
-    }
-    
   </script>
+  
   <style>
     #footer {
           position: fixed;
@@ -158,7 +141,9 @@
           <td><?php echo date("h:i A", strtotime($event['event_time_start'])); ?> - <?php echo date("h:i A", strtotime($event['event_time_end'])); ?></td>
           <td>
           <a href="editContent.php?id=<?php echo $event['event_id']; ?>"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-primary dash-button">Edit</button></a>
-          <a href="deleteContent.php?id=<?php echo $event['event_id']; ?>"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-danger dash-button">Delete</button>
+          <a href="deleteContent.php?id=<?php echo $event['event_id']; ?>" onclick="return confirm('Are you sure you want to delete this content?');">
+  <button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-danger dash-button">Delete</button>
+</a>
           </td>
         </tr>
       <?php endforeach; ?>
