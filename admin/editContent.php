@@ -243,6 +243,16 @@
                                 <?php echo '<img id="myimage" class="form-control image-container" src="data:image/*;base64,' . $event['event_image'] . '" alt="image">'; ?>
                             </div><br><br>
 
+                            <script>
+                              function resetImage() {
+                                document.getElementById('event_image').value = null;
+                                document.getElementById('myimage').style.display = "none"; 
+                                <?php
+                                $event_image=null;
+                                ?>    
+                              }
+                              </script>
+
                             <div style="text-align: center;">
                                 <button class="btn btn-danger my-2 my-sm-0" id="removeimg" type="button" onclick="resetImage()">Remove Image</button>
                             </div>
@@ -322,21 +332,13 @@
         include '../db-connector.php';
 
 
+        $event_image = $event['event_image'];
         if (isset($_FILES['event_image']) && !empty($_FILES['event_image']['tmp_name'])) {
-          // Check for remove_image flag
-          if (isset($_POST['remove_image']) && $_POST['remove_image'] == 'true') {
-            // User wants to remove the image, set event_image to null
-            $event_image = null;
-          } else {
             // New image uploaded, process it
             // ... (e.g., read image data, base64 encode)
             $image_encoded = file_get_contents($_FILES['event_image']['tmp_name']);
             $event_image = base64_encode($image_encoded);
-          }
-        } else {
-          // No file uploaded or existing image removal requested (through hidden field)
-          $event_image = null;  // Set event_image to null in this case as well
-        }
+        } 
 
         $event_id = $_GET['id'];
         $event_name = htmlspecialchars($_POST['event_name']); //event name
