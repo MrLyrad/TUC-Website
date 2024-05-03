@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 02:16 PM
+-- Generation Time: May 03, 2024 at 02:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,7 +83,7 @@ INSERT INTO `events` (`event_image`, `event_name`, `event_location`, `event_cont
 
 CREATE TABLE `org_info` (
   `info_id` int(11) NOT NULL,
-  `org_addressnum` varchar(255) NOT NULL,
+  `org_addressnum` varchar(255) DEFAULT NULL,
   `org_street` varchar(128) NOT NULL,
   `org_brgy_mncplty` varchar(128) NOT NULL,
   `org_city_state_province` varchar(128) NOT NULL,

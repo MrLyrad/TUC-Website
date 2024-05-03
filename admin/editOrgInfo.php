@@ -44,7 +44,7 @@
                     <br>
                     <h1>Organization Address</h1>
                     <label for='org_addressnum' class='textlabel input-head'>Address Number</label><br>
-                    <input type='text' name='org_addressnum' value='".$org_addressnum."' required>
+                    <input type='text' name='org_addressnum' value='".$org_addressnum."'>
                     <br>
                     <label for='org_street' class='textlabel input-head'>Street</label><br>
                     <input type='text' name='org_street' value='".$org_street."' required>
