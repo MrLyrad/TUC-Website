@@ -551,29 +551,56 @@
         </div>
 
         <div class="row">
+        <?php
+          $query = "SELECT * FROM org_info";
+          $statement = $pdo_obj->query($query);
+          $rowsReturned = $statement->rowCount();
+
+          if ($rowsReturned > 0) {
+              while ($org_details = $statement->fetch(PDO::FETCH_ASSOC)) {
+                  $org_addressnum = $org_details["org_addressnum"];
+                  $org_street = $org_details["org_street"];
+                  $org_brgy_mncplty = $org_details["org_brgy_mncplty"];
+                  $org_city_state_province = $org_details["org_city_state_province"];
+                  $org_country = $org_details["org_country"];
+                  $org_email = $org_details["org_email"];
+                  $org_map = $org_details["org_map"];
+                  $org_contactnum = $org_details["org_contactnum"];
+              }
+          } else {
+              $org_addressnum = "";
+              $org_street = "";
+              $org_brgy_mncplty = "";
+              $org_city_state_province = "";
+              $org_country = "";
+              $org_email = "";
+              $org_map = "";
+              $org_contactnum = "";
+          }
+        ?>
 
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location</h4>
-                <p>54 Examiner, cor Times, Diliman, Quezon City, Metro Manila</p>
+                <p><?php echo $org_addressnum." ".$org_street." ".$org_brgy_mncplty." ".$org_city_state_province." ".$org_country; ?></p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email</h4>
-                <p>info@example.com</p>
+                <p><?php echo $org_email; ?></p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call</h4>
-                <p>+1 5589 55488 55s</p>
+                <p><?php echo $org_contactnum; ?></p>
               </div>
 
               <!-- Tanglaw University Center in Google Maps -->
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15440.973351326884!2d121.0322113!3d14.6421237!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b655170046a7%3A0x353b7ecc69816ce5!2sTanglaw%20University%20Center!5e0!3m2!1sen!2sph!4v1714045579586!5m2!1sen!2sph" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+              <iframe src="<?php echo $org_map; ?>" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
             </div>
 
           </div>
@@ -621,16 +648,18 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
-
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Arsha</h3>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
+            <h3>Tanglaw University</h3>
+            <?php
+              echo  "<p>
+                      ".$org_addressnum." ".$org_street."<br>
+                      ".$org_brgy_mncplty."<br>
+                      ".$org_city_state_province."<br>
+                      ".$org_country."<br>
+                      <strong>Phone:</strong>".$org_contactnum."<br>
+                      <strong>Email:</strong>".$org_email."<br>
+                    </p>";
+            ?>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">

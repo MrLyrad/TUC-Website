@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 01:01 AM
+-- Generation Time: May 03, 2024 at 02:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -82,14 +82,23 @@ INSERT INTO `events` (`event_image`, `event_name`, `event_location`, `event_cont
 --
 
 CREATE TABLE `org_info` (
+  `info_id` int(11) NOT NULL,
   `org_addressnum` varchar(255) NOT NULL,
   `org_street` varchar(128) NOT NULL,
   `org_brgy_mncplty` varchar(128) NOT NULL,
-  `org_city` varchar(128) NOT NULL,
+  `org_city_state_province` varchar(128) NOT NULL,
   `org_country` varchar(128) NOT NULL,
+  `org_map` varchar(255) NOT NULL,
   `org_contactnum` varchar(11) NOT NULL,
   `org_email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `org_info`
+--
+
+INSERT INTO `org_info` (`info_id`, `org_addressnum`, `org_street`, `org_brgy_mncplty`, `org_city_state_province`, `org_country`, `org_map`, `org_contactnum`, `org_email`) VALUES
+(1, '55', 'Examiner, cor Times', 'Diliman', 'Quezon city, Metro Manila', 'Philippines', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.24333808185!2d121.02963101148492!3d14.642123685790144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b655170046a7%3A0x353b7ecc69816ce5!2sTanglaw%20University%20Center!5e0!3m2!1sen!2sph!4v', '10101010101', 'example_email@org.com');
 
 -- --------------------------------------------------------
 
@@ -157,6 +166,12 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`event_id`);
 
 --
+-- Indexes for table `org_info`
+--
+ALTER TABLE `org_info`
+  ADD PRIMARY KEY (`info_id`);
+
+--
 -- Indexes for table `volunteers`
 --
 ALTER TABLE `volunteers`
@@ -184,6 +199,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `events`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `org_info`
+--
+ALTER TABLE `org_info`
+  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
