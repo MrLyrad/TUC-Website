@@ -128,7 +128,7 @@
                             <label for='contact' class='textlabel input-head'>New Contact Number</label><br>
                             <input type='tel' name='new_cnum' value='$contact' pattern='\d{11}' class='form-control'>
                         </div>
-                        <input type='submit' name='confirm_changes' value='Confirm Changes'>
+                        <br><br><input type='submit' class='btn btn-success' name='confirm_changes' value='Confirm Changes'>
                     </form>";
 
             if(isset($_POST["confirm_changes"])){
@@ -212,6 +212,8 @@
             ob_end_flush();
         ?>      
       </div>
+      <div class="line"></div>
+
 
     </main><!-- End #main -->
 
