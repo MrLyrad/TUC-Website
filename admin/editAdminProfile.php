@@ -120,7 +120,7 @@
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
         <li><a class="nav-link scrollto active" href="adminProfile.php">Account</a></li>
-        <li><a class="nav-link scrollto" href="../authentication/adminLogout.php">Log Out</a></li>
+        <li><a class="login" href="../authentication/adminLogout.php">Log Out</a></li>
       </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
