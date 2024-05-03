@@ -53,10 +53,7 @@
 
     function resetImage() {
     document.getElementById('event_image').value = null;
-    document.getElementById('myimage').style.display = "none"; 
-    <?php
-      $event_image=null;
-    ?>    
+    document.getElementById('myimage').style.display = "none";    
     }
 
     function onFileSelected(event) {
@@ -92,13 +89,11 @@
     height: 300px; 
     object-fit: contain;
   }
-  #footer {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      color: white;
-      text-align: center;
+    #footer {
+          position: static;
+          bottom: 0;
+          width: 100%;
+          padding: 20px 0; /* Adjust padding as needed */
     }
     </style>
 </head>
@@ -196,7 +191,7 @@
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
         <li><a class="nav-link scrollto" href="adminProfile.php">Account</a></li>
-        <li><a class="login" href="../authentication/adminLogout.php">Log Out</a></li>
+        <li><a class="nav-link scrollto" href="../authentication/adminLogout.php">Log Out</a></li>
       </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -245,20 +240,11 @@
                                 <?php echo '<img id="myimage" class="form-control image-container" src="data:image/*;base64,' . $event['event_image'] . '" alt="image">'; ?>
                             </div><br><br>
 
-                            <script>
-                              function resetImage() {
-                                document.getElementById('event_image').value = null;
-                                document.getElementById('myimage').style.display = "none"; 
-                                <?php
-                                $event_image=null;
-                                ?>    
-                              }
-                              </script>
-
                             <div style="text-align: center;">
-                                <button class="btn btn-danger my-2 my-sm-0" id="removeimg" type="button" onclick="resetImage()">Remove Image</button>
+                            <input type="hidden" id="remove_image" name="remove_image" value="false">
+                            <button type="button" class="btn btn-danger my-2 my-sm-0" id="removeimg" onclick="document.getElementById('remove_image').value='true'; resetImage()">Remove Image</button>
                             </div>
-                            
+
                         </div>
 
                         <!-- Input for Event Location -->
@@ -317,7 +303,7 @@
                             <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" required><?php echo htmlspecialchars($event_content); ?></textarea><br>   
                         </div>
 
-                        <input type="hidden" id="remove_image" name="remove_image" value="false">
+                        
                     </div>
                     <div class="line"></div>
                     
@@ -333,14 +319,18 @@
     {
         include '../db-connector.php';
 
-
-        $event_image = $event['event_image'];
         if (isset($_FILES['event_image']) && !empty($_FILES['event_image']['tmp_name'])) {
             // New image uploaded, process it
             // ... (e.g., read image data, base64 encode)
             $image_encoded = file_get_contents($_FILES['event_image']['tmp_name']);
             $event_image = base64_encode($image_encoded);
         } 
+
+        if ($_POST['remove_image'] != "false") {
+            $event_image = null;
+        }
+
+        
 
         $event_id = $_GET['id'];
         $event_name = htmlspecialchars($_POST['event_name']); //event name
