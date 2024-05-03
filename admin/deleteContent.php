@@ -12,10 +12,11 @@ include '../db-connector.php';
     {
         $event_id = $_GET['id'];
 
-        //Prepare DELETE statement
-        $deleteRecord = "DELETE FROM events WHERE event_id = :event_id";
+        $deleteForeign = "DELETE FROM volunteer_events WHERE event_id = :event_id";
+        $stmt = $pdo_obj->prepare($deleteForeign);
+        $stmt->execute(['event_id' => $event_id]);
 
-        //Execute statement
+        $deleteRecord = "DELETE FROM events WHERE event_id = :event_id";
         $stmt = $pdo_obj->prepare($deleteRecord);
         $stmt->execute(['event_id' => $event_id]);
 
