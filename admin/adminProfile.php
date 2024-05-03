@@ -92,7 +92,7 @@
           grid-template-columns: 1fr;  /* Single column for all items */
         }
     #footer {
-          position: fixed;
+          position: static;
           bottom: 0;
           width: 100%;
           padding: 20px 0; /* Adjust padding as needed */
@@ -140,7 +140,7 @@
       </div>
     </section>
 
-    <section class="inner-page" style="margin-bottom: 200px;">
+    <section class="inner-page">
       <div class="container">
       <div class="line"></div>
       <div class="container-form">

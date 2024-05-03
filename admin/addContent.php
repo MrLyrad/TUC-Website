@@ -73,7 +73,7 @@
 
   <style>
     #footer {
-          position: fixed;
+          position: static;
           bottom: 0;
           width: 100%;
           padding: 20px 0; /* Adjust padding as needed */
@@ -214,7 +214,7 @@
                     </div>
                     <div class="line"></div>
                     
-                    <div class="submitbutton" style="margin-bottom: 200px;">
+                    <div class="submitbutton">
                       <button type="submit" name="bttn" class="btn btn-success my-2 my-sm-0" style="width: 200px; margin-bottom: 20px;">Submit</button>
                     </div>
                 </form>

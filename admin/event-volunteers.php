@@ -49,11 +49,13 @@
   ======================================================== -->
 <style>
   #footer {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          padding: 20px 0; /* Adjust padding as needed */
-    }
+    position: static;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0; /* Adjust padding as needed */
+    min-height: 100px; /* Set a minimum height for the footer */
+    height: auto; /* Allow the footer to expand dynamically with content */
+}
 </style>
 
 
@@ -117,7 +119,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page" style="margin-bottom: 200px;">
+    <section class="inner-page">
       <div class="container">
       <div class="line"></div>
 
@@ -195,7 +197,7 @@
   <footer id="footer">
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

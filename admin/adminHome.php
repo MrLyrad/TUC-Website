@@ -56,7 +56,7 @@
   
   <style>
     #footer {
-          position: fixed;
+          position: static;
           bottom: 0;
           width: 100%;
           padding: 20px 0; /* Adjust padding as needed */
@@ -111,7 +111,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page" style="margin-bottom: 200px;">
+    <section class="inner-page">
       <div class="container">
       <div class="line"></div>
 

@@ -93,7 +93,7 @@
     object-fit: contain;
   }
     #footer {
-          position: fixed;
+          position: static;
           bottom: 0;
           width: 100%;
           padding: 20px 0; /* Adjust padding as needed */
@@ -217,7 +217,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page" style="margin-bottom: 200px;">
+    <section class="inner-page">
       <div class="container">
       <div class="line"></div>
       <form action="editContent.php?id=<?php echo $id ?>" method="POST" enctype="multipart/form-data">
