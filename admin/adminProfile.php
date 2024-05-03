@@ -91,7 +91,14 @@
             'description';
           grid-template-columns: 1fr;  /* Single column for all items */
         }
-    </style>
+    #footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          padding: 20px 0; /* Adjust padding as needed */
+    }
+  </style>
+
 </head>
 
 

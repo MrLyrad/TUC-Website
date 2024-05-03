@@ -40,8 +40,6 @@
   <link href="../assets/css/style.css" rel="stylesheet">
   <link href="../assets/css/font.css" rel="stylesheet">
 
-  
-
   <!-- =======================================================
   * Template Name: Arsha
   * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
@@ -49,6 +47,15 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+    #footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          padding: 20px 0; /* Adjust padding as needed */
+    }
+  </style>
 </head>
 
 <?php
@@ -109,7 +116,7 @@
 <br>
   <div class="d-flex justify-content-between align-items-center">
     <h2 style="color:#e78000">Volunteers Dashboard</h2>
-    <a class="btn btn-success" href="event-volunteers.php?id=0">All Volunteers</a>
+    <a class="btn btn-success" href="event-volunteers.php?id=0&event">All Volunteers</a>
   </div>
   <br>
   <table style="margin-bottom:60px;" class="table">
@@ -142,9 +149,9 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-  <div class="container footer-bottom clearfix">
+    <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

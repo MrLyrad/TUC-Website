@@ -70,6 +70,15 @@
     }
     
   </script>
+
+  <style>
+    #footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          padding: 20px 0; /* Adjust padding as needed */
+    }
+  </style>
 </head>
 
 
