@@ -84,12 +84,14 @@
             'description';
           grid-template-columns: 1fr;  /* Single column for all items */
         }
-        #footer {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          padding: 20px 0; /* Adjust padding as needed */
-        }
+    #footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color: white;
+      text-align: center;
+    }
     </style>
 </head>
 

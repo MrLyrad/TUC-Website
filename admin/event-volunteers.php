@@ -49,13 +49,13 @@
   ======================================================== -->
 <style>
   #footer {
-    position: static;
-    bottom: 0;
-    width: 100%;
-    padding: 20px 0; /* Adjust padding as needed */
-    min-height: 100px; /* Set a minimum height for the footer */
-    height: auto; /* Allow the footer to expand dynamically with content */
-}
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color: white;
+      text-align: center;
+    }
 </style>
 
 
