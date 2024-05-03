@@ -73,7 +73,7 @@
 
   <style>
     #footer {
-      position: fixed;
+      position: static;
       left: 0;
       bottom: 0;
       width: 100%;
