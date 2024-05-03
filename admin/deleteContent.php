@@ -28,7 +28,7 @@ include '../db-connector.php';
         alert('Event Deleted');
         </script>
         ";
-        header("Location: contentDashboard.php");
+        header("Location: adminHome.php");
         exit();
     } 
     else 

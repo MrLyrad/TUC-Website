@@ -128,7 +128,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page">
+    <section class="inner-page" style="margin-bottom: 200px;">
       <div class="container">
       <div class="line"></div>
 

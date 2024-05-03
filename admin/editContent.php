@@ -217,7 +217,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page">
+    <section class="inner-page" style="margin-bottom: 200px;">
       <div class="container">
       <div class="line"></div>
       <form action="editContent.php?id=<?php echo $id ?>" method="POST" enctype="multipart/form-data">

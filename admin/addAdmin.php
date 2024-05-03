@@ -89,7 +89,7 @@
           bottom: 0;
           width: 100%;
           padding: 20px 0; /* Adjust padding as needed */
-    }
+        }
     </style>
 </head>
 
@@ -132,7 +132,7 @@
       </div>
     </section>
 
-    <section class="inner-page">
+    <section class="inner-page" style="margin-bottom: 200px;">
       <div class="container">
       <div class="line"></div>
       <form method="POST" enctype="multipart/form-data">
