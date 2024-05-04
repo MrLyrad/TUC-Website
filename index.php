@@ -321,7 +321,7 @@
                    echo '
                    <div class="portfolio-info">
                      <h4>'.$row['event_name'] .'</h4>
-                     <a href="content-details.php?id='.$row['event_id'] .'" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                     <a href="content-details.php?id='.$row['event_id'] .'&type=user" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                    </div>
                  </div>';
                 }
