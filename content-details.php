@@ -83,11 +83,18 @@
     if(isset($_GET['id']))
     {
       $id = $_GET['id'];
-      $getContent = "SELECT  * FROM events WHERE event_id = :eventID";
+      $type = $_GET['type'];
+
+      if($type=="archive"){
+        $getContent = "SELECT  * FROM archived_events WHERE event_id = :eventID";
+      }else{
+        $getContent = "SELECT  * FROM events WHERE event_id = :eventID";
+      }
       $stmt = $pdo_obj->prepare($getContent);
-        $stmt->bindParam(':eventID', $id);
-        $stmt->execute();
-        $event = $stmt->fetch(PDO::FETCH_ASSOC);
+      $stmt->bindParam(':eventID', $id);
+      $stmt->execute();
+      $event = $stmt->fetch(PDO::FETCH_ASSOC);
+      
     }
   ?>
 

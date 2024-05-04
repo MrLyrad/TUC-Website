@@ -69,7 +69,7 @@
 <?php
     require_once("../db-connector.php");
     // Fetch data from the Orgs table
-    $query = "SELECT * FROM events";
+    $query = "SELECT * FROM archived_events";
     $stmt = $pdo_obj->query($query);
     $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -88,7 +88,8 @@
         <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
         <?php
           if($admin_role == "s_admin"){
-            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Details</a></li>";
+            echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
           }
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
@@ -106,7 +107,7 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-        <h2 class="header-text-2">Content Dashboard</h2>
+        <h2 class="header-text-2">Archive Dashboard</h2>
         <?php
             echo "Welcome <b>".$admin_fullname."</b>";
         ?>
@@ -122,12 +123,7 @@
 <br>
 <br>
   <div class="d-flex justify-content-between align-items-center">
-    <h2 style="color:#e78000">All Events</h2>
-    <div>
-        <a class="btn btn-success" href="addContent.php">Add Event</a>
-        <a class="btn btn-success" href="archive.php">Archived Events</a>
-    </div>
-    
+    <h2 style="color:#e78000">Archived Events</h2>
   </div>
   <br>
   <table style="margin-bottom:60px;" class="table">
@@ -146,9 +142,9 @@
           <td><?php echo date("F j, Y", strtotime($event['event_date_start'])); ?> - <?php echo date("F j, Y", strtotime($event['event_date_end'])); ?></td>
           <td><?php echo date("h:i A", strtotime($event['event_time_start'])); ?> - <?php echo date("h:i A", strtotime($event['event_time_end'])); ?></td>
           <td>
-          <a href="editContent.php?id=<?php echo $event['event_id']; ?>"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-primary dash-button">Edit</button></a>
-          <a href="archiveContent.php?id=<?php echo $event['event_id']; ?>" onclick="return confirm('Are you sure you want to archive this content?');"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-warning dash-button">Archive</button></a>
-          <a href="deleteContent.php?id=<?php echo $event['event_id']; ?>" onclick="return confirm('Are you sure you want to delete this content?');"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-danger dash-button">Delete</button>
+          <a href="../content-details.php?id=<?php echo $event['event_id']; ?>&type=archive"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-primary dash-button">More Info</button></a>
+          <a href="deleteContent.php?id=<?php echo $event['event_id']; ?>&type=archive" onclick="return confirm('Are you sure you want to delete this content?');">
+            <button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-danger dash-button">Delete</button>
           </a>
           </td>
         </tr>
@@ -168,7 +164,7 @@
   <footer id="footer">
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
