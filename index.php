@@ -132,15 +132,15 @@
         <div class="row justify-content-center" data-aos="zoom-in">
 
           <div class="col-lg-2 col-md-8 col-3 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+            <a href="https://kalfilead.org" target="_blank"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></a>
           </div>
 
           <div class="col-lg-2 col-md-8 col-3 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+          <a href="#" target="_blank"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></a>
           </div>
 
           <div class="col-lg-2 col-md-8 col-3 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+            <a href="https://www.facebook.com/opalclub/" target="_blank"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></a>
           </div>
 
         </div>
@@ -680,7 +680,7 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

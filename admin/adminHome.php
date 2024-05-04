@@ -88,8 +88,7 @@
         <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
         <?php
           if($admin_role == "s_admin"){
-            echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
-            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Details</a></li>";
           }
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
@@ -165,7 +164,7 @@
   <footer id="footer">
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

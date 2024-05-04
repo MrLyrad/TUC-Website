@@ -78,8 +78,7 @@
         <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
         <?php
           if($admin_role == "s_admin"){
-            echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
-            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Details</a></li>";
           }
         ?>
         <li><a class="nav-link scrollto active" href="allAdmin.php">Admin List</a></li>
@@ -136,6 +135,11 @@
 ?>
   <div class="d-flex justify-content-between align-items-center">
     <h2 style="color:#e78000">Admins    <?php echo $numAdmins ?></h2>
+    <?php
+          if($admin_role == "s_admin"){
+            echo "<a class='btn btn-success' href='addAdmin.php'>Add Admin</a>";
+          }
+    ?>
   </div>
   <br>
   <table style="margin-bottom:60px;" class="table">

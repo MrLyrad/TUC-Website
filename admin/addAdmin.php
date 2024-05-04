@@ -1,12 +1,15 @@
 <?php
-    session_start();
-    if (!isset($_SESSION["admin"])) {
-        header("Location: ../authentication/adminLogin.php");
-    }  else {
-        $admin = $_SESSION["admin"];
-        $admin_fullname = $admin["admin_fullname"];
-        $admin_role = $admin["admin_role"];
-    }
+  session_start();
+  if (!isset($_SESSION["admin"])) {
+      header("Location: ../authentication/adminLogin.php");
+  }  else {
+      $admin = $_SESSION["admin"];
+      $admin_fullname = $admin["admin_fullname"];
+      $admin_role = $admin["admin_role"];
+  }
+  if ($admin_role != "s_admin"){
+    header("Location: ../authentication/adminLogin.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,11 +115,10 @@
         <li><a class="nav-link scrollto" href="userDashboard.php">Volunteers</a></li>
         <?php
           if($admin_role == "s_admin"){
-            echo "<li><a class='nav-link scrollto active' href='addAdmin.php'>Add Admin</a></li>";
-            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Details</a></li>";
           }
         ?>
-        <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
+        <li><a class="nav-link scrollto active" href="allAdmin.php">Admin List</a></li>
         <li><a class="nav-link scrollto" href="adminProfile.php">Account</a></li>
         <li><a class="login" href="../authentication/adminLogout.php">Log Out</a></li>
       </ul>
@@ -131,6 +133,10 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
+      <ol>
+        <li><a href="allAdmin.php">Admin List</a></li>
+        <li>Add Admin</li>
+      </ol>
         <h2 class="header-text-2">Add Admin</h2>
         <?php
             echo "Welcome <b>".$admin_fullname."</b>";
