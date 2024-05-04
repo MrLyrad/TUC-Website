@@ -189,7 +189,7 @@ $all_events = array(); // Store fetched events for efficient display
           <td><?php echo date("F j, Y", strtotime($event['event_date_start'])); ?> - <?php echo date("F j, Y", strtotime($event['event_date_end'])); ?></td>
           <td><?php echo date("h:i A", strtotime($event['event_time_start'])); ?> - <?php echo date("h:i A", strtotime($event['event_time_end'])); ?></td>
           <td>
-          <a href="userAction/unregister.php?id=<?php echo $event['event_id']; ?>"><button  class="btn btn-outline-danger dash-button">Unregister</button>
+          <a href="userAction/unregister.php?id=<?php echo $event['event_id']; ?>"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-danger dash-button">Unregister</button>
           </td>
         </tr>
       <?php endforeach; ?>

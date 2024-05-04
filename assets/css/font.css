@@ -23,24 +23,17 @@
   }
 
   .header-text-1{
-    font-family: "Bugaki";
+    font-family: "Bugaki", "Helvetica", sans-serif;
     text-align: center;
   }
 
   .header-text-2{
-    font-family: "Bugaki";
+    font-family: "Bugaki", "Helvetica", sans-serif;
     color: #e78000;
   }
 
-  /* .input-head{
-    font-family: Montserrat-ExtraBold;
-    font-size: 1.5rem;
-    font-weight: bold;
-  } */
-
-
   .body-text{
-    font-family: "Montserrat";
+    font-family: "Montserrat", 'Trebuchet MS', sans-serif;
     text-align: justify;
   } 
 
