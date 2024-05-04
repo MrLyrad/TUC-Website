@@ -107,6 +107,10 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
+      <ol>
+        <li><a href="contentDashboard.php">Content Dashboard</a></li>
+        <li>Archived Events</li>
+      </ol>
         <h2 class="header-text-2">Archive Dashboard</h2>
         <?php
             echo "Welcome <b>".$admin_fullname."</b>";
@@ -142,7 +146,7 @@
           <td><?php echo date("F j, Y", strtotime($event['event_date_start'])); ?> - <?php echo date("F j, Y", strtotime($event['event_date_end'])); ?></td>
           <td><?php echo date("h:i A", strtotime($event['event_time_start'])); ?> - <?php echo date("h:i A", strtotime($event['event_time_end'])); ?></td>
           <td>
-          <a href="../content-details.php?id=<?php echo $event['event_id']; ?>&type=archive"><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-primary dash-button">More Info</button></a>
+          <a href="../content-details.php?id=<?php echo $event['event_id']; ?>&type=archive" target="_blank "><button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-primary dash-button">More Info</button></a>
           <a href="deleteContent.php?id=<?php echo $event['event_id']; ?>&type=archive" onclick="return confirm('Are you sure you want to delete this content?');">
             <button style="margin-bottom:10px; display: flex; justify-content: center; align-items: center;" class="btn btn-outline-danger dash-button">Delete</button>
           </a>
@@ -164,7 +168,7 @@
   <footer id="footer">
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
