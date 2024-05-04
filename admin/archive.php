@@ -108,7 +108,7 @@
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
       <ol>
-        <li><a href="contentDashboard.php">Content Dashboard</a></li>
+        <li><a href="adminHome.php">Content Dashboard</a></li>
         <li>Archived Events</li>
       </ol>
         <h2 class="header-text-2">Archive Dashboard</h2>
