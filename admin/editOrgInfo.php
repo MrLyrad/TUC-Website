@@ -7,6 +7,7 @@
         $admin_fullname = $admin["admin_fullname"];
         $admin_role = $admin["admin_role"];
     }
+    ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -268,6 +269,7 @@
                         die();
                     }
                 }
+          ob_end_flush();
       ?>
 
     </section>
