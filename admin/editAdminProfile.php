@@ -93,10 +93,15 @@
           grid-template-columns: 1fr;  /* Single column for all items */
         }
     #footer {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          padding: 20px 0; /* Adjust padding as needed */
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color: white;
+      text-align: center;
+    }
+    .textlabel{
+        font-size: 20px;
     }
     </style>
 </head>
@@ -116,6 +121,7 @@
         <?php
           if($admin_role == "s_admin"){
             echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
           }
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
@@ -144,7 +150,7 @@
       </div>
     </section>
 
-    <section class="inner-page" style="margin-bottom: 200px;">
+    <section class="inner-page">
       <div class="container">
       <div class="line"></div>
       <div class="container-form">

@@ -49,10 +49,12 @@
   ======================================================== -->
 <style>
   #footer {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          padding: 20px 0; /* Adjust padding as needed */
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color: white;
+      text-align: center;
     }
 </style>
 
@@ -89,6 +91,7 @@
         <?php
           if($admin_role == "s_admin"){
             echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
           }
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
@@ -117,7 +120,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page" style="margin-bottom: 200px;">
+    <section class="inner-page">
       <div class="container">
       <div class="line"></div>
 
@@ -195,7 +198,7 @@
   <footer id="footer">
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Arsha</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

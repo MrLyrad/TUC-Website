@@ -52,10 +52,7 @@
 
     function resetImage() {
     document.getElementById('event_image').value = null;
-    document.getElementById('myimage').style.display = "none"; 
-    <?php
-      $event_image=null;
-    ?>    
+    document.getElementById('myimage').style.display = "none";    
     }
 
     function onFileSelected(event) {
@@ -92,10 +89,13 @@
     object-fit: contain;
   }
     #footer {
-          position: fixed;
+          position: static;
           bottom: 0;
           width: 100%;
           padding: 20px 0; /* Adjust padding as needed */
+    }
+    .textlabel{
+        font-size: 20px;
     }
     </style>
 </head>
@@ -189,11 +189,12 @@
         <?php
           if($admin_role == "s_admin"){
             echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
           }
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
         <li><a class="nav-link scrollto" href="adminProfile.php">Account</a></li>
-        <li><a class="login" href="../authentication/adminLogout.php">Log Out</a></li>
+        <li><a class="nav-link scrollto" href="../authentication/adminLogout.php">Log Out</a></li>
       </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -216,7 +217,7 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page" style="margin-bottom: 200px;">
+    <section class="inner-page">
       <div class="container">
       <div class="line"></div>
       <form action="editContent.php?id=<?php echo $id ?>" method="POST" enctype="multipart/form-data">
@@ -243,9 +244,10 @@
                             </div><br><br>
 
                             <div style="text-align: center;">
-                                <button class="btn btn-danger my-2 my-sm-0" id="removeimg" type="button" onclick="resetImage()">Remove Image</button>
+                            <input type="hidden" id="remove_image" name="remove_image" value="false">
+                            <button type="button" class="btn btn-danger my-2 my-sm-0" id="removeimg" onclick="document.getElementById('remove_image').value='true'; resetImage()">Remove Image</button>
                             </div>
-                            
+
                         </div>
 
                         <!-- Input for Event Location -->
@@ -304,7 +306,7 @@
                             <textarea type="text" name="event_content" id="event_content" class="form-control" style="height: 300px;" required><?php echo htmlspecialchars($event_content); ?></textarea><br>   
                         </div>
 
-                        <input type="hidden" id="remove_image" name="remove_image" value="false">
+                        
                     </div>
                     <div class="line"></div>
                     
@@ -320,22 +322,18 @@
     {
         include '../db-connector.php';
 
-
         if (isset($_FILES['event_image']) && !empty($_FILES['event_image']['tmp_name'])) {
-          // Check for remove_image flag
-          if (isset($_POST['remove_image']) && $_POST['remove_image'] == 'true') {
-            // User wants to remove the image, set event_image to null
-            $event_image = null;
-          } else {
             // New image uploaded, process it
             // ... (e.g., read image data, base64 encode)
             $image_encoded = file_get_contents($_FILES['event_image']['tmp_name']);
             $event_image = base64_encode($image_encoded);
-          }
-        } else {
-          // No file uploaded or existing image removal requested (through hidden field)
-          $event_image = null;  // Set event_image to null in this case as well
+        } 
+
+        if ($_POST['remove_image'] != "false") {
+            $event_image = null;
         }
+
+        
 
         $event_id = $_GET['id'];
         $event_name = htmlspecialchars($_POST['event_name']); //event name
