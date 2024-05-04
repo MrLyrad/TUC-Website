@@ -91,6 +91,7 @@
         <?php
           if($admin_role == "s_admin"){
             echo "<li><a class='nav-link scrollto' href='addAdmin.php'>Add Admin</a></li>";
+            echo "<li><a class='nav-link scrollto' href='editOrgInfo.php'>Edit Organization Details</a></li>";
           }
         ?>
         <li><a class="nav-link scrollto" href="allAdmin.php">Admin List</a></li>
