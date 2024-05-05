@@ -7,6 +7,9 @@
         $admin_fullname = $admin["admin_fullname"];
         $admin_role = $admin["admin_role"];
     }
+    if ($admin_role != "s_admin"){
+      header("Location: ../authentication/adminLogin.php");
+    }
     ob_start();
 ?>
 <!DOCTYPE html>
