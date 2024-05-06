@@ -25,7 +25,6 @@
 
   <!-- Favicons -->
   <link href="../assets/img/adminFavicon.png" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
@@ -171,19 +170,18 @@
                     <div class="container-form">
 
                         <div class="item1">
-                            <label for='org_email' class='textlabel input-head'>Email</label><br>
-                            <input type='email' name='org_email' class='form-control' value='<?php echo $org_email ?>' required>
-                            <br>
+                          <label for='org_email' class='textlabel input-head'>Email</label><br>
+                          <input type='email' name='org_email' class='form-control' value='<?php echo $org_email ?>' required>
+                          <br>
                         </div>
 
                         <div class="item2">
-                            <label for='org_contactnum' class='textlabel input-head'>Contact Number</label><br>
-                            <input type='tel' name='org_contactnum' pattern='\d{11}' class='form-control' value='<?php echo $org_contactnum ?>' required>
+                          <label for='org_contactnum' class='textlabel input-head'>Contact Number</label><br>
+                          <input type='tel' name='org_contactnum' pattern='\d{11}' class='form-control' value='<?php echo $org_contactnum ?>' required>
                         </div>
 
                         <div class="item3">
-                        <input type='url' class ="form-control" name='org_map' id='mapLinkInput' placeholder='Enter map URL here' value='<?php echo $org_map ?>' required>
-                    
+                          <input type='url' class ="form-control" name='org_map' id='mapLinkInput' placeholder='Enter map URL here' value='<?php echo $org_map ?>' required>
                         </div>
 
                         <div class="item10">

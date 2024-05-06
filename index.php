@@ -196,7 +196,6 @@
         <div class="row">
           <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="100" style="margin-bottom: 20px;">
             <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4 style="color: #e78000;">Opal</h4>
               <p class="body-text">Opal is a club for high school girls aged 11-17, offering
                 activities which aim to build character through sports,
@@ -207,7 +206,6 @@
 
           <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="200" style="margin-bottom: 20px;">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
               <h4 style="color: #e78000;">KALFI LEAD</h4>
               <p class="body-text">KALFI LEAD is a long-term character formation through
                 personalized mentoring, delivery of project management
@@ -219,7 +217,6 @@
 
           <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300" style="margin-bottom: 20px;">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
               <h4 style="color: #e78000;">ETC</h4>
               <p class="body-text">ETC or enriching talks on Culture are informal talks or
                 get-togethers on diverse topics which are relevant and
@@ -229,7 +226,6 @@
 
           <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="500" style="margin-bottom: 20px;">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-layer"></i></div>
               <h4 style="color: #e78000;">Life Coaching</h4>
               <p class="body-text">Mentoring is a one on one converation with an adult.
                 It aims to accompany the mentee in her present
@@ -243,7 +239,6 @@
 
           <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="500" style="margin-bottom: 20px;">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-layer"></i></div>
               <h4 style="color: #e78000;">Outreach</h4>
               <p class="body-text">Regular outreach activities are being done to the nearby
                 community. Volunteers teach children and visit the
@@ -254,7 +249,6 @@
 
           <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="600" style="margin-bottom: 20px;">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-layer"></i></div>
               <h4 style="color: #e78000;">Faith centered activities</h4>
               <p class="body-text">Tanglaw has a regular class about the catholic faith.
                 It also offers monthly recollection, weekly confession, and
@@ -277,23 +271,23 @@
         <div class="row">
           <div class="col-lg-9 text-center text-lg-start">
             <h3 style="color: #ffc95b;">Call To Action</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>We offer activities for women youth development focusing on character building and social service. Volunteers are very much appreciated.</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="#">Call To Action</a>
+            <a class="cta-btn align-middle" href="authentication/signup.php">Volunteer Now</a>
           </div>
         </div>
 
       </div>
     </section><!-- End Cta Section -->
 
-    <!-- ======= Portfolio Section ======= -->
+    <!-- ======= Events Section ======= -->
     <section id="events" class="portfolio">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Events</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Weekly activities are being organized to ensure the development of the women youth.</p>
         </div>
 
           <?php
@@ -335,7 +329,7 @@
         ?>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section><!-- End Events Section -->
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team section-bg">
@@ -343,7 +337,7 @@
 
         <div class="section-title">
           <h2>Team</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Meet the people behind the scenes!</p>
         </div>
 
         <div class="row">
@@ -427,7 +421,7 @@
 
         <div class="section-title">
           <h2>Testimonies</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Various testimonies provided by volunteers involved in activities, volunteer work, and participants.</p>
         </div>
 
         <div class="row">
@@ -485,7 +479,7 @@
 
         <div class="section-title">
           <h2>Frequently Asked Questions</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Here are some of the frequently asked questions that we have provided the answers to!</p>
         </div>
 
         <div class="faq-list">
@@ -547,7 +541,7 @@
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>For any questions, sponsorship, or general inquiries, please use the contact form below to reach out to us.</p>
         </div>
 
         <div class="row">
@@ -664,7 +658,7 @@
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <p>Feel free to reach us using our socials!</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

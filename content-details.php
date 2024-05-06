@@ -241,48 +241,72 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3 class="header-text-2">Tanglaw University Center</h3>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-          </div>
+<!-- ======= Footer ======= -->
+    <?php
+          include 'db-connector.php';
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4 class="header-text-2">Useful Links</h4>
-            <ul class="body-text">
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
+          $query = "SELECT * FROM org_info";
+          $statement = $pdo_obj->query($query);
+          $rowsReturned = $statement->rowCount();
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4 class="header-text-2">Our Social Networks</h4>
-            <p class="body-text">Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
-          </div>
+          if ($rowsReturned > 0) {
+              while ($org_details = $statement->fetch(PDO::FETCH_ASSOC)) {
+                  $org_addressnum = $org_details["org_addressnum"];
+                  $org_street = $org_details["org_street"];
+                  $org_brgy_mncplty = $org_details["org_brgy_mncplty"];
+                  $org_city_state_province = $org_details["org_city_state_province"];
+                  $org_country = $org_details["org_country"];
+                  $org_email = $org_details["org_email"];
+                  $org_map = $org_details["org_map"];
+                  $org_contactnum = $org_details["org_contactnum"];
+              }
+          } else {
+              $org_addressnum = "";
+              $org_street = "";
+              $org_brgy_mncplty = "";
+              $org_city_state_province = "";
+              $org_country = "";
+              $org_email = "";
+              $org_map = "";
+              $org_contactnum = "";
+          }
+    ?>
 
+<footer id="footer">
+
+
+<div class="footer-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 footer-contact">
+        <h3>Tanglaw University</h3>
+        <?php
+          echo  "<p>
+                  ".$org_addressnum." ".$org_street."<br>
+                  ".$org_brgy_mncplty."<br>
+                  ".$org_city_state_province."<br>
+                  ".$org_country."<br>
+                  <strong>Phone:</strong>".$org_contactnum."<br>
+                  <strong>Email:</strong>".$org_email."<br>
+                </p>";
+        ?>
+      </div>
+
+      <div class="col-lg-3 col-md-6 footer-links">
+        <h4>Our Social Networks</h4>
+        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+        <div class="social-links mt-3">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
         </div>
       </div>
+
     </div>
+  </div>
+</div>
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">

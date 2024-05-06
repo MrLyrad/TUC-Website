@@ -165,7 +165,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" style="position: absolute;">
+  <footer id="footer">
     <div class="container footer-bottom clearfix">
       <div class="copyright">
         &copy; Copyright <strong><span>Tanglaw University Center</span></strong>. All Rights Reserved
