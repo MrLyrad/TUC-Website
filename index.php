@@ -427,11 +427,11 @@
         <div class="row">
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="box">
-              <h3>Nelle Siojo</h3>
-              <h4><span><b>A Safe Space for You</b></span></h4>
+            <div class="box featured">
+              <h3>Jolo Endona</h3>
+              <h4><span><b>Passion for a Cause</b></span></h4>
               <ul>
-                <li><i class="bx bx-check"></i> A place where you can find a silent moment with Our lord.</li>
+                <li><i class="bx bx-check"></i> The people of Tanglaw are kind, welcoming, and very passionate in their cause. They inspire many to do what they can to help.</li>
               </ul>
             </div>
           </div>
@@ -447,7 +447,7 @@
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
-            <div class="box">
+            <div class="box featured">
               <h3>Lorna Mauricio-Arada</h3>
               <h4><span><b>Great Environment</b></span></h4>
               <ul>
