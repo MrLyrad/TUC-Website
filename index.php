@@ -428,42 +428,30 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="box">
-              <h3>Jane Doe</h3>
-              <h4>A Safe Space<span>Volunteer in one of the events</span></h4>
+              <h3>Nelle Siojo</h3>
+              <h4><span><b>A Safe Space for You</b></span></h4>
               <ul>
-                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                <li><i class="bx bx-check"></i> Pharetra massa massa ultriciespan></li>
-                <li><i class="bx bx-check"></i> Massa ultricies mi quis hendreritpan></li>
+                <li><i class="bx bx-check"></i> A place where you can find a silent moment with Our lord.</li>
               </ul>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
             <div class="box featured">
-              <h3>John Doe</h3>
-              <h4>A Step to a Better Society<span>Volunteer in one of the events</span></h4>
+              <h3>Sandra Orencia</h3>
+              <h4><span><b>A Step to a Better Society</b></span></h4>
               <ul>
-                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
+                <li><i class="bx bx-check"></i> I love the homey atmosphere of Tanglaw ❤️ Everytime I visit, the warmth of the people is always noticeable in their kind greetings and cheerful smiles.</li>
               </ul>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="box">
-              <h3>Joy Doe</h3>
-              <h4>Great Environment<span>Volunteer in one of the events</span></h4>
+              <h3>Lorna Mauricio-Arada</h3>
+              <h4><span><b>Great Environment</b></span></h4>
               <ul>
-                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
+                <li><i class="bx bx-check"></i> I just love visiting this place. A solemn way to spend and make your day meaningful by attending the recollections.</li>
               </ul>
             </div>
           </div>
@@ -660,11 +648,7 @@
             <h4>Our Social Networks</h4>
             <p>Feel free to reach us using our socials!</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              <a href="https://www.facebook.com/TanglawUniversityCenter/" class="facebook"><i class="bx bxl-facebook"></i></a>
             </div>
           </div>
 
