@@ -177,7 +177,7 @@
 
                         <div class="item2">
                           <label for='org_contactnum' class='textlabel input-head'>Contact Number</label><br>
-                          <input type='tel' name='org_contactnum' pattern='\d{11}' class='form-control' value='<?php echo $org_contactnum ?>' required>
+                          <input type='text' name='org_contactnum' class='form-control' value='<?php echo $org_contactnum ?>' required>
                         </div>
 
                         <div class="item3">
