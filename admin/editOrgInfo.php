@@ -260,7 +260,7 @@
                     }
 
                     if($prepare){
-                        mysqli_stmt_bind_param($stmt, "sssssiss", $org_addressnum, $org_street, $org_brgy_mncplty, $org_city_state_province, $org_country, $org_contactnum, $org_email, $org_map);
+                        mysqli_stmt_bind_param($stmt, "ssssssss", $org_addressnum, $org_street, $org_brgy_mncplty, $org_city_state_province, $org_country, $org_contactnum, $org_email, $org_map);
                         mysqli_stmt_execute($stmt);
                         header("Location: editOrgInfo.php");
                         die();

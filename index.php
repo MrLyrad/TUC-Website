@@ -314,7 +314,7 @@
                    }
                    echo '
                    <div class="portfolio-info">
-                     <h4>'.$row['event_name'] .'</h4>
+                     <h4 style="font-family: Montserrat;">'.$row['event_name'] .'</h4>
                      <a href="content-details.php?id='.$row['event_id'] .'&type=user" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                    </div>
                  </div>';
@@ -448,7 +448,7 @@
 
           <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
             <div class="box featured">
-              <h3>Lorna Mauricio-Arada</h3>
+              <h3>Lorna Mauricio Arada</h3>
               <h4><span><b>Great Environment</b></span></h4>
               <ul>
                 <li><i class="bx bx-check"></i> I just love visiting this place. A solemn way to spend and make your day meaningful by attending the recollections.</li>
@@ -639,7 +639,7 @@
             <h4>Our Social Networks</h4>
             <p>Feel free to reach us using our socials!</p>
             <div class="social-links mt-3">
-              <a href="https://www.facebook.com/TanglawUniversityCenter/" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.facebook.com/TanglawUniversityCenter/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
             </div>
           </div>
 

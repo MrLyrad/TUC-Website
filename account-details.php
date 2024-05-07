@@ -195,7 +195,7 @@
         <h4>Our Social Networks</h4>
         <p>Feel free to reach us using our socials!</p>
         <div class="social-links mt-3">
-          <a href="https://www.facebook.com/TanglawUniversityCenter/" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.facebook.com/TanglawUniversityCenter/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
         </div>
       </div>
 

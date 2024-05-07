@@ -892,7 +892,7 @@ section {
   transition: all 0.3s;
   padding: 8px 20px;
   border-radius: 50px;
-  font-family: "Bugaki";
+  font-family: "Montserrat";
 }
 
 .portfolio #portfolio-flters li:hover,
@@ -1282,7 +1282,7 @@ section {
 .faq .faq-list a {
   display: block;
   position: relative;
-  font-family: "Bugaki";
+  font-family: "Montserrat";
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
